@@ -1,6 +1,5 @@
-export const urlToAPIBackend_first = process.env.REACT_APP_urlToAPIBackend_first;
-export const urlToFrontend = process.env.REACT_APP_urlToFrontend;
-
+export const urlToAPIBackend_first = process.env.REACT_APP_URL_TO_BACKEND;
+export const urlToFrontend = process.env.REACT_APP_URL_TO_FRONTEND;
 
 export function setCookie(name:string,value:string,days:number) {
     var expires = "";
