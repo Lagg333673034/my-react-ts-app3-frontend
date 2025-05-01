@@ -1,5 +1,5 @@
-export const urlToAPIBackend_first = 'http://localhost:5000/api';
-export const urlToFrontend = 'http://localhost:3000';
+export const urlToAPIBackend_first = process.env.REACT_APP_urlToAPIBackend_first;
+export const urlToFrontend = process.env.REACT_APP_urlToFrontend;
 
 
 export function setCookie(name:string,value:string,days:number) {

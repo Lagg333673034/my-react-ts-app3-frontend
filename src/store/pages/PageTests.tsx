@@ -50,7 +50,6 @@ const PageTest = () => {
         dispatch(modalTestDeleteSetup({open:false,object:{} as ITest}))
     };
 
-
     return(
         <div style={{width:'100%'}}>
             <Breadcrumbs sx={{marginBottom:'10px'}} separator={<NavigateNextIcon fontSize="small" />}>
