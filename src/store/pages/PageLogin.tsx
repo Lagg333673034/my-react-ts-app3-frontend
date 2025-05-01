@@ -47,8 +47,8 @@ const PageLogin = () => {
         navigate(PAGE_MAIN_ROUTE);
       }
 
-      if(result.error){
-        setErrorMessage(result.error.data.message);
+      if(result?.error){
+        setErrorMessage(result?.error?.data?.message);
       }
     };
 

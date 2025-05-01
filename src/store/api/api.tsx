@@ -1,5 +1,8 @@
-export const urlToAPIBackend_first = process.env.REACT_APP_URL_TO_BACKEND;
-export const urlToFrontend = process.env.REACT_APP_URL_TO_FRONTEND;
+//export const urlToAPIBackend_first = "http://localhost:5000/api"
+//export const urlToFrontend = "http://localhost:3000";
+export const urlToAPIBackend_first = "https://my-react-ts-app3-backend.onrender.com/api"
+export const urlToFrontend = "https://lagg333673034-my-test-app.netlify.app";
+
 
 export function setCookie(name:string,value:string,days:number) {
     var expires = "";
