@@ -1,0 +1,19 @@
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { PAGE_TEST_ROUTE, PAGE_USER_ROUTE } from '../routes/routes';
+import { useSelector } from 'react-redux';
+import { RootState } from '../reducers';
+import {v4 as uuidv4} from 'uuid'
+
+const PageMain = () => {
+    return(
+        <div>
+            {/*uuidv4()*/}
+            1b1e0491-3d37-4194-8650-844686aafd3d<br/>
+            Main page<br/>
+            Spisok testov, kotorie polzovaeli sdelali obshedostypnimi s filtrom<br/>
+            Tablica - cells - nazvanie testa, email<br/>
+        </div>
+    )
+};
+export default PageMain;

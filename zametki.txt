@@ -1,0 +1,29 @@
+(sozdat react + typescript)
+npx create-react-app . --template typescript
+
+(tyt noviy redux i svazaka s react i tipi dla nego  (vsego 3 shtyki)) 
+npm install @reduxjs/toolkit react-redux @types/react-redux
+
+(dly navigacii)
+npm i react-router-dom @types/react-router-dom
+
+(ystanovka tipo servera -- eto prosto fail "db.json")
+npm install json-server
+zapysk etogo servera komandoy "npx json-server db.json --port 5000"  
+(--port 5000, t.k. na 3000 porty y nas rabotaer React.js)
+
+(biblioteki dla stilizacii)
+npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/icons-material
+npm install --save material-ui-popup-state
+
+npm install uuid
+
+
+
+
+
+
+
+///
+npm install @react-oauth/google@latest

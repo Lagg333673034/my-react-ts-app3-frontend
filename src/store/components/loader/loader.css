@@ -1,0 +1,33 @@
+.myLoader {
+    display: inline-block;
+    width: 0.4rem;
+    height: 0.4rem;
+    border: 7px dashed;
+    border-radius: 50%;
+    margin: 5px 5px 5px 5px;
+    padding: 3px;
+    -webkit-animation-name: rotate;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-name: rotate;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-duration: 4s;
+    animation-duration: 4s;
+}
+@keyframes rotate {
+    0% { color: #6d6d6d; transform: rotate(0deg); }
+    20% { color: #329632; }
+    40% { color: #b40000; }
+    60% { color: #b40000; }
+    80% { color: #4646b4; }
+    100% { color: #6d6d6d; transform: rotate(360deg);}
+}    
+@-webkit-keyframes rotate {
+    0% { color: #6d6d6d; transform: rotate(0deg); }
+    20% { color: #329632; }
+    40% { color: #b40000; }
+    60% { color: #b40000; }
+    80% { color: #4646b4; }
+    100% { color: #6d6d6d; transform: rotate(360deg);}
+}    

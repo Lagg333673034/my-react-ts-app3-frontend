@@ -1,0 +1,101 @@
+body{
+    margin: 10px 20px;
+    padding: 0;
+}
+/*-------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+div.MuiDialog-root.MuiModal-root >
+div.MuiDialog-container > div.MuiPaper-root{
+    width: 100%;
+    border-radius: 8px;
+}
+div.MuiDialog-root.MuiModal-root >
+div.MuiDialog-container > div.MuiPaper-root > div.MuiDialogContent-root{
+    width: calc(100% - 48px);
+}
+div.MuiDialog-root.MuiModal-root >
+div.MuiDialog-container > div.MuiPaper-root > div.MuiDialogActions-root{
+    justify-content: space-between;
+}
+/*-------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+table.MuiTable-root{
+    min-width: 100px;
+}
+table.MuiTable-root > tbody > tr > td:nth-child(1){
+    width: 30px;
+    text-align: center;
+}
+table.MuiTable-root > tbody > tr > td:nth-child(2){
+    text-align: left;
+}
+/*-------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+button.MuiButton-colorSuccess{
+    background-color: #2da333;
+}
+/*-------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+table.readyToPassTest{
+    width: 100%;
+    min-width: 10px;
+}
+table.readyToPassTest > tbody > tr > td > span.MuiCheckbox-root{
+    padding: 0;
+}
+/*-------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+table.testResults{
+    width: 100%;
+    min-width: 100px;
+}
+table.testResults td{
+    font-size: 0.9em;
+    padding: 5px;
+}
+table.MuiTable-root.testResults > tbody > tr > td:nth-child(1){
+    width: 1em;
+    text-align: center;
+}
+table.MuiTable-root.testResults > tbody > tr > td:nth-child(2){
+    width: 2em;
+    text-align: center;
+}
+table.MuiTable-root.testResults > tbody > tr > td:nth-child(3){
+    text-align: left;
+}
+table.MuiTable-root.testResults > tbody > tr > td:nth-child(4){
+    color: rgb(0, 0, 184);
+}
+table.MuiTable-root.testResults > tbody > tr > td:nth-child(5){
+    width: 11em;
+}
+/*-------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+div.modalTestResult.MuiDialog-root.MuiModal-root >
+div.MuiDialog-container > div.MuiPaper-root{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 8px;
+}
+div.modalTestResult.MuiDialog-root.MuiModal-root >
+div.MuiDialog-container > div.MuiPaper-root > h2.MuiDialogTitle-root{
+    border-bottom: 1px solid gray;
+    padding: 5px 10px 5px 20px;
+}
+div.modalTestResult.MuiDialog-root.MuiModal-root >
+div.MuiDialog-container > div.MuiPaper-root > div.MuiDialogContent-root{
+    width: calc(100% - 48px);
+    padding: 10px 10px 10px 20px;
+    gap: 5px;
+    font-size: 18px;
+}
+div.modalTestResult.MuiDialog-root.MuiModal-root >
+div.MuiDialog-container > div.MuiPaper-root > div.MuiDialogActions-root{
+    justify-content: space-between;
+    border-top: 1px solid gray;
+}
+/*-------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
