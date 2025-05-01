@@ -27,3 +27,6 @@ npm install uuid
 
 ///
 npm install @react-oauth/google@latest
+
+//to build
+npm run build
