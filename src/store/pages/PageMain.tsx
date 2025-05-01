@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PAGE_TEST_ROUTE, PAGE_USER_ROUTE } from '../routes/routes';
 import { useSelector } from 'react-redux';
 import { RootState } from '../reducers';
 import {v4 as uuidv4} from 'uuid'
+import { PAGE_TEST_ROUTE } from '../routes/routes';
 
 const PageMain = () => {
+    const navigate = useNavigate();
+    useEffect(()=>{
+        navigate(PAGE_TEST_ROUTE);
+    },[])
+    
     return(
         <div>
             {/*uuidv4()*/}

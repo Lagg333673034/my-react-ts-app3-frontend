@@ -49,6 +49,12 @@ table.testResults{
     width: 100%;
     min-width: 100px;
 }
+table.testResults th{
+    padding: 5px 10px;
+    line-height: 1.3rem;
+    font-weight: 500;
+    text-align: center;
+}
 table.testResults td{
     font-size: 0.9em;
     padding: 5px;
@@ -68,7 +74,8 @@ table.MuiTable-root.testResults > tbody > tr > td:nth-child(4){
     color: rgb(0, 0, 184);
 }
 table.MuiTable-root.testResults > tbody > tr > td:nth-child(5){
-    width: 11em;
+    width: 100px;
+    text-align: center;
 }
 /*-------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------*/
@@ -96,6 +103,27 @@ div.modalTestResult.MuiDialog-root.MuiModal-root >
 div.MuiDialog-container > div.MuiPaper-root > div.MuiDialogActions-root{
     justify-content: space-between;
     border-top: 1px solid gray;
+}
+/*-------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+table.testResultAnswers td.answerRowHeader{
+    background-color: rgb(238, 238, 238);
+    border-top: 1px solid rgba(224, 224, 224, 1);
+    padding: 0 10px;
+    text-align: center;
+}
+table.testResultAnswers td.answerRow{
+    padding: 0 10px;
+    text-align: center;
+}
+table.testResultAnswers td.correctAnswerRow{ 
+    background-color: rgb(158, 255, 158);
+}
+table.testResultAnswers td.inCorrectAnswerRow{ 
+    background-color: rgb(255, 158, 158);
+}
+table.testResultAnswers > tbody > tr > td.answerRow > span.MuiCheckbox-root{
+    padding: 5px;
 }
 /*-------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------*/

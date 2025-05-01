@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { 
     PAGE_MAIN_ROUTE, 
     PAGE_TEST_ROUTE, 
-    PAGE_USER_ROUTE, 
+    /*PAGE_USER_ROUTE,*/
     PAGE_LOGIN_ROUTE, 
     PAGE_REGISTRATION_ROUTE, 
 } from '../../routes/routes';
@@ -73,9 +73,9 @@ function Navbar() {
             {userAuth?<Button sx={{m:'0 5px'}} variant="outlined" color="info" size="small" onClick={() => navigate(`${PAGE_TEST_ROUTE}`)}>
                 Tests
               </Button>:''}
-            {userAuth?<Button sx={{m:'0 5px'}} variant="outlined" color="info" size="small" onClick={() => navigate(`${PAGE_USER_ROUTE}`)}>
+            {/*userAuth?<Button sx={{m:'0 5px'}} variant="outlined" color="info" size="small" onClick={() => navigate(`${PAGE_USER_ROUTE}`)}>
                 Users
-            </Button>:''}
+            </Button>:''*/}
             </Box>
           </Box>
 
@@ -126,7 +126,7 @@ function Navbar() {
                 </Box>
                 <MenuItem onClick={() => {navigate(`${PAGE_MAIN_ROUTE}`);setOpen(false)}}>Main</MenuItem>
                 {userAuth?<MenuItem onClick={() => {navigate(`${PAGE_TEST_ROUTE}`);setOpen(false)}}>Tests</MenuItem>:''}
-                {userAuth?<MenuItem onClick={() => {navigate(`${PAGE_USER_ROUTE}`);setOpen(false)}}>Users</MenuItem>:''}
+                {/*userAuth?<MenuItem onClick={() => {navigate(`${PAGE_USER_ROUTE}`);setOpen(false)}}>Users</MenuItem>:''*/}
                 <Divider sx={{my:3}} />
                 {!userAuth?<MenuItem>
                   <Button color="primary" variant="contained" fullWidth onClick={() => {navigate(`${PAGE_REGISTRATION_ROUTE}`);setOpen(false)}}>

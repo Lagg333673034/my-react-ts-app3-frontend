@@ -15,7 +15,7 @@ export const PAGE_QUESTION_ROUTE = '/question';
 export const PAGE_ANSWER_ROUTE = '/answer';
 export const PAGE_TEST_READY_FOR_PASS_ROUTE = '/ready-for-pass';
 export const PAGE_TEST_RESULTS_ROUTE = '/test-results';
-export const PAGE_USER_ROUTE = '/user';
+//export const PAGE_USER_ROUTE = '/user';
 export const PAGE_REGISTRATION_ROUTE = '/registration';
 export const PAGE_LOGIN_ROUTE = '/login';
 
@@ -34,6 +34,6 @@ export const AuthRoutes = [
     {path: PAGE_TEST_READY_FOR_PASS_ROUTE+'/:idTest/:uuid', component: <PageReadyForPassTest/>, exact: true},
     {path: PAGE_TEST_RESULTS_ROUTE+'/:idTest', component: <PageTestResults/>, exact: true},
     
-    {path: PAGE_USER_ROUTE, component: <PageUsers/>, exact: true},
+    {/*path: PAGE_USER_ROUTE, component: <PageUsers/>, exact: true*/},
     {path: '*', component: <PageMain/>, exact: true},
 ];

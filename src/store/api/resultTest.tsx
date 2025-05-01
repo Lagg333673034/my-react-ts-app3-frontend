@@ -19,7 +19,16 @@ export const resultTestAPI = createApi({
                 }
             }),
         }),
-
+        fetchResultTestAnswers: build.query<any[], {idResultTest:number}>({
+            query:({idResultTest}) => ({
+                headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+                url: `${secondUrl}/getAnswers`,
+                method: 'POST',
+                body: {
+                    idResultTest: idResultTest
+                }
+            }),
+        }),
         saveResultTest: build.mutation<any, {idTest:number,timeStart:string,timeFinish:string,answers:any}>({
             query:({idTest,timeStart,timeFinish,answers}) => ({
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},

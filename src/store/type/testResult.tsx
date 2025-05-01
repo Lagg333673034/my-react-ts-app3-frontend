@@ -10,8 +10,10 @@ export interface ITestResult{
     testName: string,
     emailRegistred: string,
     emailNotRegistred: string,
-    timeStatr:string,
+    timeStart:string,
+    timeStart0:string,
     timeFinish:string,
+    timeFinish0:string,
     sort: number
 }
 

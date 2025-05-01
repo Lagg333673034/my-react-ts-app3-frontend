@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { testAPI } from '../api/test';
 import { useParams } from 'react-router-dom';
-import { Alert, Button, Checkbox, FormControl, FormLabel, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField } from '@mui/material';
-import {v4 as uuidv4} from 'uuid'
+import { Alert, Button, Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { getCurrentDataTime } from '../api/api';
 import { useSelector } from 'react-redux';
 import { RootState } from '../reducers';
@@ -19,8 +17,8 @@ const PageReadyForPassTest = () => {
     let timeFinish = '';
     let indexQuestion = 1;
     let indexAanswer = 1;
-    let questionName = '';
-    let answerName = '';
+    let idQuestion = '';
+    let idAnswer = '';
 
     const {currentData: testRows, error, isLoading} = testAPI.useFetchReadyForPassTestQuery({idTest:Number(idTest), uuid:String(uuid)});
     useEffect(()=>{
@@ -78,7 +76,7 @@ const PageReadyForPassTest = () => {
                     {testRows && testRows.map((row:any) => 
                         <>
 
-                        {row.questionName != questionName ? 
+                        {row.idQuestion != idQuestion ? 
                         <TableRow key={row.idQuestion} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell sx={{
                                 borderTop:'1px solid rgba(224, 224, 224, 1)',
@@ -98,12 +96,13 @@ const PageReadyForPassTest = () => {
 
                             <TableCell sx={{display:'none'}}>
                                 {indexQuestion++}
-                                {questionName=row.questionName}
+                                {idQuestion=row.idQuestion}
                                 {indexAanswer=1}
+                                {idAnswer=''}
                             </TableCell>
                         </TableRow> :''}
                         
-                        {row.answerName != answerName ? 
+                        {row.idAnswer != idAnswer ? 
                         <TableRow key={row.idAnswer} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell>
                                 {indexAanswer}
@@ -117,7 +116,7 @@ const PageReadyForPassTest = () => {
 
                             <TableCell sx={{display:'none'}}>
                                 {indexAanswer++}
-                                {answerName=row.answerName}
+                                {idAnswer=row.idAnswer}
                             </TableCell>
                         </TableRow> :''}
 

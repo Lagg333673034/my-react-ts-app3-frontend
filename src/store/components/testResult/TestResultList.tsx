@@ -32,6 +32,15 @@ const TestResultList: FC = () => {
 
             <TableContainer component={Paper}>
             <Table size="small" className='testResults'>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>№</TableCell>
+                        <TableCell>Results</TableCell>
+                        <TableCell>Test name</TableCell>
+                        <TableCell>Who took the test</TableCell>
+                        <TableCell>Test finish datetime</TableCell>
+                    </TableRow>
+                </TableHead>
                 <TableBody>
                 {testResults && testResults.map((testResult,index) => (
                     <TableRow hover key={testResult.id} sx={{ '&:last-child td, &:last-child th':{border:0}}}>
