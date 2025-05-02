@@ -12,7 +12,7 @@ import { RootState } from '../../reducers';
 import { useDispatch } from 'react-redux';
 import { siteSlice } from '../../reducers/siteSlice';
 
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -22,7 +22,6 @@ import Drawer from '@mui/material/Drawer';
 import {Menu as MenuIcon, CloseRounded, Person} from '@mui/icons-material';
 import Menu from '@mui/material/Menu';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-
 
 function Navbar() {
     const navigate = useNavigate();
@@ -50,18 +49,6 @@ function Navbar() {
 
     const [open, setOpen] = React.useState(false);
     const toggleDrawer = (newOpen: boolean) => () => {setOpen(newOpen);};
-
-
-    //Account menu
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const openAccount = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
-
 
     return (
         <StyledToolbar>

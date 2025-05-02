@@ -19,7 +19,6 @@ interface IModalAdd {
 export default function ModalAdd({ modalAddOpen, modalAddExecute }: IModalAdd) {
   const dispatch = useDispatch();
   const {modalQuestionAddSetup} = questionSlice.actions;
-  const {modalQuestionAddObject} = useSelector((state: RootState) => state.questionReducer);
 
   const modalAddClose = () =>{
     dispatch(modalQuestionAddSetup({open:false,object:{} as IQuestion}))

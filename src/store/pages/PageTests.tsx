@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import TestList from '../components/test/TestList';
 
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -26,7 +26,7 @@ const PageTest = () => {
     const [updateTest] = testAPI.useUpdateTestMutation();
     const [deleteTest] = testAPI.useDeleteTestMutation();
     const {
-        modalTestAddOpen, modalTestAddObject,
+        modalTestAddOpen, 
         modalTestUpdateOpen, modalTestUpdateObject,
         modalTestDeleteOpen, modalTestDeleteObject
     } = useSelector((state: RootState) => state.testReducer);

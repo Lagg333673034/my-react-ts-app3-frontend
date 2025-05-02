@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import { ITest } from '../../type/test';
 import { PAGE_TEST_RESULTS_ROUTE, PAGE_QUESTION_ROUTE, PAGE_TEST_ROUTE } from '../../routes/routes';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { testSlice } from '../../reducers/testSlice';
 import { useDispatch } from 'react-redux';
 import { IconButton, Popover, Typography } from '@mui/material';
@@ -28,14 +28,14 @@ const TestItem: FC<TestItemProps> = ({test}) => {
   }
   const handlerSetReady = (testReady:number) =>{
     let newTestReady = 0;
-    if(testReady == 0){
+    if(testReady === 0){
       newTestReady = 1;
     }
     setReadyTest({id:test.id,ready:newTestReady} as ITest);
   }
   const handlerSetPublished = (testPublished:number) =>{
     let newTestPublished = 0;
-    if(testPublished == 0){
+    if(testPublished === 0){
       newTestPublished = 1;
     }
     setPublishedTest({id:test.id,published:newTestPublished} as ITest);
@@ -57,20 +57,21 @@ const TestItem: FC<TestItemProps> = ({test}) => {
   };
   
   return (
-    <div key={test.id} style={{display:'flex', flexDirection:'row', flexWrap:'nowrap', justifyContent:'space-between', alignItems:'center'}}>
-        <div style={{fontSize:'16px'}}>
-          {test.name}
+    <div key={test.id} style={{display:'flex', flexFlow: 'row', flexDirection:'row', flexWrap:'wrap', 
+        justifyContent:'space-between', alignItems:'center', lineHeight:'1'}}>
+        <div style={{fontSize:'16px',padding:'10px 10px'}}>
+          {test.name} (Q:&nbsp;{test.questionCount})
         </div>
         <div>
           <IconButton size="medium" color='secondary' onClick={handlerOpenTestResults} title='Test results'>
             <AssignmentTurnedIn/>
           </IconButton>
 
-          <IconButton size="medium" color={test.ready != 0 ? 'success' : 'error' } onClick={()=>handlerSetReady(test.ready)}
-            title={test.ready != 0 ? 'Test ready for pass' : 'Test not ready for pass' }>
+          <IconButton size="medium" color={test.ready !== 0 ? 'success' : 'error' } onClick={()=>handlerSetReady(test.ready)}
+            title={test.ready !== 0 ? 'Test ready for pass' : 'Test not ready for pass' }>
             <FlagSharp/>
           </IconButton>
-          {test.ready != 0 ? 
+          {test.ready !== 0 ? 
             <IconButton size="medium" color='success' onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}
               onClick={()=>handlerCopyLinkForRegistred(`${urlToFrontend}/ready-for-pass/${test.id}/${test.uuid}`)}>
               <Link/>
@@ -86,8 +87,8 @@ const TestItem: FC<TestItemProps> = ({test}) => {
             </IconButton>
           : '' }
           <IconButton size="medium" color='info' onClick={()=>handlerSetPublished(test.published)} 
-            title={test.published != 0 ? 'The test is public' : 'The test is not public' }>
-            {test.published != 0 ? <Public/> : <PublicOff/> }
+            title={test.published !== 0 ? 'The test is public' : 'The test is not public' }>
+            {test.published !== 0 ? <Public/> : <PublicOff/> }
           </IconButton>
           <IconButton size="medium" color='success' onClick={handlerSelect} title='Go to the questions list'>
             <FormatListNumbered/>

@@ -2,12 +2,12 @@ import PageMain from '../pages/PageMain';
 import PageTests from '../pages/PageTests';
 import PageQuestions from '../pages/PageQuestions';
 import PageAnswers from '../pages/PageAnswers';
-import PageUsers from '../pages/PageUsers';
+/*import PageUsers from '../pages/PageUsers';*/
 import PageRegistration from '../pages/PageRegistration';
 import PageLogin from '../pages/PageLogin';
-
 import PageReadyForPassTest from '../pages/PageReadyForPassTest';
 import PageTestResults from '../pages/PageTestResults';
+import PageChangePassword from '../pages/PageChangePassword';
 
 export const PAGE_MAIN_ROUTE = '/';
 export const PAGE_TEST_ROUTE = '/test';
@@ -18,11 +18,12 @@ export const PAGE_TEST_RESULTS_ROUTE = '/test-results';
 //export const PAGE_USER_ROUTE = '/user';
 export const PAGE_REGISTRATION_ROUTE = '/registration';
 export const PAGE_LOGIN_ROUTE = '/login';
+export const PAGE_CHANGE_PASSWORD_ROUTE = '/change-password';
 
 export const notAuthRoutes = [
     {path: PAGE_REGISTRATION_ROUTE, component: <PageRegistration/>, exact: true},
     {path: PAGE_LOGIN_ROUTE, component: <PageLogin/>, exact: true},
-
+    {path: PAGE_CHANGE_PASSWORD_ROUTE+'/:uuid', component: <PageChangePassword/>, exact: true},
     {path: '*', component: <PageLogin/>, exact: true},
 ];
 export const AuthRoutes = [

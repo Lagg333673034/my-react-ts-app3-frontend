@@ -19,7 +19,6 @@ interface IModalAdd {
 export default function ModalAdd({ modalAddOpen, modalAddExecute }: IModalAdd) {
   const dispatch = useDispatch();
   const {modalTestAddSetup} = testSlice.actions;
-  const {modalTestAddObject} = useSelector((state: RootState) => state.testReducer);
 
   const modalAddClose = () =>{
     dispatch(modalTestAddSetup({open:false,object:{} as ITest}))

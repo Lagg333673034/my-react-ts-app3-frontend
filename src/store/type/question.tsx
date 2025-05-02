@@ -9,5 +9,7 @@ export interface IQuestion{
     idTest: number,
     name: string,
     multiplOptions: number,
-    sort: number
+    sort: number,
+    answerCount: number,
+    answerTrueCount: number,
 }

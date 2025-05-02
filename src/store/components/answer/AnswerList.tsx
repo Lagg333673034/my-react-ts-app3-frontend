@@ -41,10 +41,10 @@ const AnswerList: FC<AnswerListProps> = ({idQuestion}) => {
                 <TableBody>
                 {answers && answers.map((answer,index) => (
                     <TableRow hover key={answer.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                        <TableCell>
+                        <TableCell className={answer.correct===1 ? 'correctAnswerRow':''}>
                             {index+=1}
                         </TableCell>
-                        <TableCell>
+                        <TableCell className={answer.correct===1 ? 'correctAnswerRow':''}>
                             <AnswerItem key={answer.id} answer={answer} />
                         </TableCell>
                     </TableRow>

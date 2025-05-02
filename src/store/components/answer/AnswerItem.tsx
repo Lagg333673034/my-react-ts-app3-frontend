@@ -29,12 +29,13 @@ const AnswerItem: FC<AnswerItemProps> = ({answer}) => {
   }
 
   return (
-    <div key={answer.id} style={{display:'flex', flexDirection:'row', flexWrap:'nowrap', justifyContent:'space-between', alignItems:'center'}}>
-        <div style={{fontSize:'16px'}}>
+    <div key={answer.id} style={{display:'flex', flexDirection:'row', flexFlow:'row', flexWrap:'wrap', 
+      justifyContent:'space-between', alignItems:'center'}}>
+        <div style={{fontSize:'16px',padding:'10px 10px'}}>
           {answer.name}
         </div>
         <div>
-          <IconButton size="medium"  onClick={()=>handlerSetCorrect(answer.correct)} title={answer.correct==0 ? 'False answer' : 'True answer'}>
+          <IconButton size="medium"  onClick={()=>handlerSetCorrect(answer.correct)} title={answer.correct===0 ? 'False answer' : 'True answer'}>
             {answer.correct==0 ? <RadioButtonUnchecked color='action'/> : <CheckCircleOutline color='success'/>}
           </IconButton>
           <IconButton size="medium" color='warning' onClick={()=>dispatch(modalAnswerUpdateSetup({open:true,object:answer}))} title='Edit answer'>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { authAPI } from '../api/auth';
 import { IUser } from '../type/user';
 import { useNavigate } from 'react-router-dom';
@@ -16,12 +15,11 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
-import { ResultTypeFrom } from '@reduxjs/toolkit/query';
 import { Alert } from '@mui/material';
 
 const PageRegistration = () => {
     const navigate = useNavigate();
-    const [registration, {error: authError, isLoading: isAuthLoading}] = authAPI.useRegistrationMutation();
+    const [registration] = authAPI.useRegistrationMutation();
 
     const [successMessage,setSuccessMessage] = useState<string>('');
     const [errorMessage,setErrorMessage] = useState<string>('');
@@ -47,10 +45,11 @@ const Card = styled(MuiCard)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     alignSelf: 'center',
-    width: '100%',
-    padding: theme.spacing(4),
+    width: 'calc(100% - 50px)',
+    padding: '25px 25px',
     gap: theme.spacing(2),
     margin: 'auto',
+    borderRadius: '10px',
     [theme.breakpoints.up('sm')]: {
       maxWidth: '350px',
     },
@@ -110,17 +109,17 @@ const Card = styled(MuiCard)(({ theme }) => ({
               Sign up
             </Button>
 
-            {successMessage !='' ? <Alert severity="success">{successMessage}</Alert>:''}
-            {errorMessage !='' ? <Alert severity="error">{errorMessage}</Alert>:''}
+            {successMessage !=='' ? <Alert severity="success">{successMessage}</Alert>:''}
+            {errorMessage !=='' ? <Alert severity="error">{errorMessage}</Alert>:''}
           </Box>
 
           <Divider>or</Divider>
 
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Typography sx={{ textAlign: 'center' }}>
-                Already have an account?{' '}
+                Already have an account? &nbsp;
               <Link onClick={() => navigate(`${PAGE_LOGIN_ROUTE}`)} sx={{ alignSelf: 'center', fontSize: '1.1rem', cursor: 'pointer' }}>
-                Sign in
+                Sign&nbsp;in
               </Link>
             </Typography>
           </Box>

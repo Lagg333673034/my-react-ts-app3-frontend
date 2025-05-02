@@ -14,6 +14,7 @@ export interface ITestResult{
     timeStart0:string,
     timeFinish:string,
     timeFinish0:string,
-    sort: number
+    sort: number,
+    questionCount:number,
 }
 

@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ITest } from "../type/test";
 import { IUser } from "../type/user";
-
 
 interface IUestSlice{
     user: IUser;

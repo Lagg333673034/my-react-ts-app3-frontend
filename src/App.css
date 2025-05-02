@@ -1,5 +1,5 @@
 body{
-    margin: 10px 20px;
+    margin: 10px 15px;
     padding: 0;
 }
 /*-------------------------------------------------------------------------------*/
@@ -25,9 +25,11 @@ table.MuiTable-root{
 table.MuiTable-root > tbody > tr > td:nth-child(1){
     width: 30px;
     text-align: center;
+    padding: 1px 1px 1px 1px;
 }
 table.MuiTable-root > tbody > tr > td:nth-child(2){
     text-align: left;
+    padding: 1px 1px 1px 1px;
 }
 /*-------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------*/
@@ -43,6 +45,15 @@ table.readyToPassTest{
 table.readyToPassTest > tbody > tr > td > span.MuiCheckbox-root{
     padding: 0;
 }
+table.readyToPassTest.MuiTable-root > tbody > tr > td:nth-child(1){
+    width: 30px;
+    text-align: center;
+    padding: 5px 10px 5px 10px;
+}
+table.readyToPassTest.MuiTable-root > tbody > tr > td:nth-child(2){
+    text-align: left;
+    padding: 5px;
+}
 /*-------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------*/
 table.testResults{
@@ -50,32 +61,41 @@ table.testResults{
     min-width: 100px;
 }
 table.testResults th{
-    padding: 5px 10px;
+    padding: 5px 5px;
     line-height: 1.3rem;
     font-weight: 500;
-    text-align: center;
+    text-align: left;
+}
+table.MuiTable-root.testResults > thead > tr > th:nth-child(1){
+    padding: 5px 10px;
+}
+table.MuiTable-root.testResults > thead > tr > th:nth-child(2){
+    padding: 0;
+}
+table.MuiTable-root.testResults > thead > tr > th:nth-child(3){
+    padding: 5px 10px;
 }
 table.testResults td{
     font-size: 0.9em;
     padding: 5px;
+    text-align: left;
 }
 table.MuiTable-root.testResults > tbody > tr > td:nth-child(1){
     width: 1em;
-    text-align: center;
 }
 table.MuiTable-root.testResults > tbody > tr > td:nth-child(2){
     width: 2em;
-    text-align: center;
 }
 table.MuiTable-root.testResults > tbody > tr > td:nth-child(3){
-    text-align: left;
-}
-table.MuiTable-root.testResults > tbody > tr > td:nth-child(4){
+    width: 250px;
+    padding: 5px 10px;
     color: rgb(0, 0, 184);
 }
+table.MuiTable-root.testResults > tbody > tr > td:nth-child(4){
+    width: 200px;
+}
 table.MuiTable-root.testResults > tbody > tr > td:nth-child(5){
-    width: 100px;
-    text-align: center;
+    width: auto;
 }
 /*-------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------*/
@@ -83,9 +103,9 @@ div.modalTestResult.MuiDialog-root.MuiModal-root >
 div.MuiDialog-container > div.MuiPaper-root{
     width: 100%;
     height: 100%;
-    margin: 0;
+    margin: 10px;
     padding: 0;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 div.modalTestResult.MuiDialog-root.MuiModal-root >
 div.MuiDialog-container > div.MuiPaper-root > h2.MuiDialogTitle-root{
@@ -106,24 +126,30 @@ div.MuiDialog-container > div.MuiPaper-root > div.MuiDialogActions-root{
 }
 /*-------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------*/
-table.testResultAnswers td.answerRowHeader{
+table.testResultAnswers > tbody> tr > td.answerRowHeader{
     background-color: rgb(238, 238, 238);
     border-top: 1px solid rgba(224, 224, 224, 1);
-    padding: 0 10px;
+    padding: 5px 10px;
+    text-align: left;
+}
+table.testResultAnswers > tbody> tr > td:nth-child(2){
+    text-align: left;
+}
+table.testResultAnswers > tbody> tr > td:nth-child(3),
+table.testResultAnswers > tbody> tr > td:nth-child(4){
     text-align: center;
 }
-table.testResultAnswers td.answerRow{
-    padding: 0 10px;
-    text-align: center;
+table .correctAnswerRow{ 
+    background-color: rgb(178, 235, 178);
 }
-table.testResultAnswers td.correctAnswerRow{ 
-    background-color: rgb(158, 255, 158);
-}
-table.testResultAnswers td.inCorrectAnswerRow{ 
+table .inCorrectAnswerRow{ 
     background-color: rgb(255, 158, 158);
 }
+table.testResultAnswers > tbody > tr > td.answerRow{
+    padding: 5px 10px;
+}
 table.testResultAnswers > tbody > tr > td.answerRow > span.MuiCheckbox-root{
-    padding: 5px;
+    padding: 0px;
 }
 /*-------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------*/

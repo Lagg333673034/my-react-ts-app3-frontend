@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -23,7 +23,6 @@ const TestResultList: FC = () => {
     useEffect(()=>{
         refetch();
     },[])
-
     return(
         <div style={{width:'100%', textAlign:'center'}}>
 
@@ -36,9 +35,9 @@ const TestResultList: FC = () => {
                     <TableRow>
                         <TableCell>№</TableCell>
                         <TableCell>Results</TableCell>
-                        <TableCell>Test name</TableCell>
-                        <TableCell>Who took the test</TableCell>
-                        <TableCell>Test finish datetime</TableCell>
+                        <TableCell>Email</TableCell>
+                        <TableCell>Finish</TableCell>
+                        <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -48,21 +47,17 @@ const TestResultList: FC = () => {
                             {index+=1}
                         </TableCell>
                         <TableCell>
-                            <IconButton size="small" color='primary' onClick={()=>dispatch(modalTestResultSetup({open:true,object:testResult}))} title='Delete test'>
+                            <IconButton size="small" color='primary' onClick={()=>dispatch(modalTestResultSetup({open:true,object:testResult}))} title='Results'>
                                 <MenuBook/>
                             </IconButton>
                         </TableCell>
-                        <TableCell>
-                            {testResult.testName}
-                        </TableCell>
-                        <TableCell>
+                        <TableCell sx={{wordBreak: 'break-all'}}>
                             {testResult.emailRegistred !='' ? testResult.emailRegistred : testResult.emailNotRegistred}
                         </TableCell>
                         <TableCell>
                             {testResult.timeFinish}
                         </TableCell>
-                        <TableCell>
-                        </TableCell>
+                        <TableCell></TableCell>
                     </TableRow>
                 ))}
                 </TableBody>

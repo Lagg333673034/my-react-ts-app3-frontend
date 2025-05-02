@@ -40,7 +40,7 @@ const PageQuestion = () => {
     const [updateQuestion] = questionAPI.useUpdateQuestionMutation();
     const [deleteQuestion] = questionAPI.useDeleteQuestionMutation();
     const {
-        modalQuestionAddOpen, modalQuestionAddObject,
+        modalQuestionAddOpen, 
         modalQuestionUpdateOpen, modalQuestionUpdateObject,
         modalQuestionDeleteOpen, modalQuestionDeleteObject
     } = useSelector((state: RootState) => state.questionReducer);
@@ -69,11 +69,11 @@ const PageQuestion = () => {
             <Breadcrumbs sx={{marginBottom:'10px'}} separator={<NavigateNextIcon fontSize="small" />}>
                 {breadcrumbs}
             </Breadcrumbs>
-
-            <div style={{display:'grid', fontSize: '1.2em', fontWeight: 'bold', margin:'0 0 10px 0'}}>
-                Test: {tests && tests[0] && tests[0].name}
-            </div>
             
+            <div style={{display:'block', fontSize: '1.2em', margin:'0 0 0 0'}}>
+                <span style={{fontWeight: 'bold'}}>Test:</span> &nbsp;{tests && tests[0] && tests[0].name}
+            </div>
+
             <QuestionList idTest={Number(idTest)} />
 
             <ModalAdd modalAddOpen={modalQuestionAddOpen} modalAddExecute={modalAddExecute} />

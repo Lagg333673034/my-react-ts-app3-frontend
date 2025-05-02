@@ -28,6 +28,26 @@ export const authAPI = createApi({
                 }
             }),
         }),
+        restorePasswordSendEmail: build.mutation<any, string>({
+            query:(emailToRestorePassword) => ({
+                url: `${secondUrl}/restore-password-send-email`,
+                method: 'POST',
+                body: {
+                    email: emailToRestorePassword
+                }
+            }),
+        }),
+        restorePasswordChangePassword: build.mutation<any, {uuid:string,newPassword:string}>({
+            query:({uuid,newPassword}) => ({
+                url: `${secondUrl}/restore-password-change-password`,
+                method: 'POST',
+                body: {
+                    uuid:uuid,
+                    newPassword:newPassword
+                }
+            }),
+        }),
+
         checkAuth: build.query<any, any>({
             query:() => ({
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},

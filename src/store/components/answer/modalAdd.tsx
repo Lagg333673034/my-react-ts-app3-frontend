@@ -8,8 +8,6 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import { FormControl, TextField } from '@mui/material';
-import { questionSlice } from '../../reducers/questionSlice';
-import { IQuestion } from '../../type/question';
 import { answerSlice } from '../../reducers/answerSlice';
 import { IAnswer } from '../../type/answer';
 

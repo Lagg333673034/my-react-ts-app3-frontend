@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import { testResultSlice } from '../../reducers/testResultSlice';
 import { ITestResult } from '../../type/testResult';
-import { Button, Checkbox, colors, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
+import { Button, Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { resultTestAPI } from '../../api/resultTest';
 
 interface IModalTestResult {
@@ -21,13 +21,14 @@ export default function ModalTestResult({ modalTestResultOpen }: IModalTestResul
 
   const {currentData: testRows} = resultTestAPI.useFetchResultTestAnswersQuery({
     idResultTest:modalTestResultObject.id
-  });
+  }) as any;
+  const {currentData: testScore} = resultTestAPI.useFetchResultTestScoreQuery({
+    idResultTest:modalTestResultObject.id
+  }) as any;
 
   const diff_minutes = (dt2_s:string, dt1_s:string) => {
     let dt2 = new Date(dt2_s);
     let dt1 = new Date(dt1_s);
-    console.log(dt2_s);
-
     let diff =(dt2.getTime() - dt1.getTime()) / 1000;
     diff /= 60;
 
@@ -46,7 +47,6 @@ export default function ModalTestResult({ modalTestResultOpen }: IModalTestResul
   const modalTestResultClose = () =>{
     dispatch(modalTestResultSetup({open:false,object:{} as ITestResult}))
   }
-
   return (
     <Dialog open={modalTestResultOpen} onClose={modalTestResultClose} className='modalTestResult'>
       <DialogTitle className='modalTestResult'>Result</DialogTitle>
@@ -60,7 +60,7 @@ export default function ModalTestResult({ modalTestResultOpen }: IModalTestResul
         <div>
         Who took the test:&nbsp;
           <div style={{display:'inline-block',color:'green'}}>
-            {modalTestResultObject.emailRegistred !='' ? modalTestResultObject.emailRegistred : modalTestResultObject.emailNotRegistred}
+            {modalTestResultObject.emailRegistred !=='' ? modalTestResultObject.emailRegistred : modalTestResultObject.emailNotRegistred}
           </div>
         </div>
         <div>
@@ -70,13 +70,19 @@ export default function ModalTestResult({ modalTestResultOpen }: IModalTestResul
             ({diff_minutes(modalTestResultObject.timeFinish0,modalTestResultObject.timeStart0)} min.)
           </div>
         </div>
+        <div>
+        Score:&nbsp;
+          <div style={{display:'inline-block',color:'#cb0000', fontWeight:'bold'}}>
+            {testScore && testScore[0] && testScore[0].questionTrueCount} / {testScore && testScore[0] && testScore[0].questionCount}
+          </div>
+        </div>
 
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} size="small" className='testResultAnswers'>
+          <Table size="small" className='testResultAnswers'>
               <TableBody>
               {testRows && testRows.map((row:any) => 
                   <>
-                  {row.idQuestion != idQuestion ? 
+                  {row.idQuestion !== idQuestion ? 
                   <TableRow key={row.idQuestion} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                       <TableCell className='answerRowHeader'>
                           {indexQuestion}
@@ -98,37 +104,36 @@ export default function ModalTestResult({ modalTestResultOpen }: IModalTestResul
                       </TableCell>
                   </TableRow> :''}
                   
-                  {row.idAnswer != idAnswer ? 
+                  {row.idAnswer !== idAnswer ? 
                   <TableRow key={row.idAnswer} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                       <TableCell className={'answerRow '+ 
-                      ((row.userAnswer==1 && row.correctAnswer==1) ? 'correctAnswerRow':'')+
-                      ((row.userAnswer==1 && row.correctAnswer==0) ? 'inCorrectAnswerRow':'')+
-                      ((row.userAnswer==0 && row.correctAnswer==1) ? 'inCorrectAnswerRow':'')
+                      ((row.userAnswer===1 && row.correctAnswer===1) ? 'correctAnswerRow':'')+
+                      ((row.userAnswer===1 && row.correctAnswer===0) ? 'inCorrectAnswerRow':'')+
+                      ((row.userAnswer===0 && row.correctAnswer===1) ? 'inCorrectAnswerRow':'')
                       }>
-                        {indexAanswer}
                       </TableCell>
                       <TableCell sx={{width:'100%',textAlign:'left'}} className={'answerRow '+ 
-                      ((row.userAnswer==1 && row.correctAnswer==1) ? 'correctAnswerRow':'')+
-                      ((row.userAnswer==1 && row.correctAnswer==0) ? 'inCorrectAnswerRow':'')+
-                      ((row.userAnswer==0 && row.correctAnswer==1) ? 'inCorrectAnswerRow':'')
+                      ((row.userAnswer===1 && row.correctAnswer===1) ? 'correctAnswerRow':'')+
+                      ((row.userAnswer===1 && row.correctAnswer===0) ? 'inCorrectAnswerRow':'')+
+                      ((row.userAnswer===0 && row.correctAnswer===1) ? 'inCorrectAnswerRow':'')
                       }>
                         {row.answerName} 
                       </TableCell>
                       <TableCell sx={{width:'30px'}} className={'answerRow '+ 
-                      ((row.userAnswer==1 && row.correctAnswer==1) ? 'correctAnswerRow':'')+
-                      ((row.userAnswer==1 && row.correctAnswer==0) ? 'inCorrectAnswerRow':'')+
-                      ((row.userAnswer==0 && row.correctAnswer==1) ? 'inCorrectAnswerRow':'')
+                      ((row.userAnswer===1 && row.correctAnswer===1) ? 'correctAnswerRow':'')+
+                      ((row.userAnswer===1 && row.correctAnswer===0) ? 'inCorrectAnswerRow':'')+
+                      ((row.userAnswer===0 && row.correctAnswer===1) ? 'inCorrectAnswerRow':'')
                       }>
                         <Checkbox disabled sx={{color:'#1976d2!important'}} 
                         defaultChecked={Number(row.userAnswer)==1 ? true : false} /> 
                       </TableCell>
                       <TableCell sx={{width:'30px'}} className={'answerRow '+ 
-                      ((row.userAnswer==1 && row.correctAnswer==1) ? 'correctAnswerRow':'')+
-                      ((row.userAnswer==1 && row.correctAnswer==0) ? 'inCorrectAnswerRow':'')+
-                      ((row.userAnswer==0 && row.correctAnswer==1) ? 'inCorrectAnswerRow':'')
+                      ((row.userAnswer===1 && row.correctAnswer===1) ? 'correctAnswerRow':'')+
+                      ((row.userAnswer===1 && row.correctAnswer===0) ? 'inCorrectAnswerRow':'')+
+                      ((row.userAnswer===0 && row.correctAnswer===1) ? 'inCorrectAnswerRow':'')
                       }>
                         <Checkbox disabled sx={{color:'#1976d2!important'}} 
-                        defaultChecked={Number(row.correctAnswer)==1 ? true : false} /> 
+                        defaultChecked={Number(row.correctAnswer)===1 ? true : false} /> 
                       </TableCell>
                       <TableCell sx={{display:'none'}}>
                         {indexAanswer++}

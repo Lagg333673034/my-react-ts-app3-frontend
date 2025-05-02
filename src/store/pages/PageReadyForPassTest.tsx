@@ -3,13 +3,10 @@ import { testAPI } from '../api/test';
 import { useParams } from 'react-router-dom';
 import { Alert, Button, Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { getCurrentDataTime } from '../api/api';
-import { useSelector } from 'react-redux';
-import { RootState } from '../reducers';
 import { resultTestAPI } from '../api/resultTest';
 
 const PageReadyForPassTest = () => {
     const {idTest,uuid} = useParams();
-    const {userAuth,userEmail} = useSelector((state: RootState) => state.siteReducer);
 
     const [successMessage,setSuccessMessage] = useState<string>('');
     const [errorMessage,setErrorMessage] = useState<string>('');
@@ -31,7 +28,7 @@ const PageReadyForPassTest = () => {
     const [saveResultTest] = resultTestAPI.useSaveResultTestMutation();
     const handlerSaveResultTest = async() =>{
         let answerResults = document.querySelectorAll('input[name=checkboxesValue]:checked') as any;
-        let answers = new Array;
+        let answers = new Array();
         for(let i=0; i<answerResults.length; i++){
             answers.push(answerResults[i].value)
         }
@@ -56,12 +53,6 @@ const PageReadyForPassTest = () => {
         }
     }
 
-    //console.log(testRows)
-    /*proverit` 3 sposoba sohraneniya:
-    svoi test so svoego akkaynta
-    test s chyjogo akkaynta
-    test neavtorizovanim polzovatelem*/
-
     return(
         <div style={{width:'100%'}}>
             {!isLoading && testRows?.length && testRows?.length>0 ? 
@@ -76,7 +67,7 @@ const PageReadyForPassTest = () => {
                     {testRows && testRows.map((row:any) => 
                         <>
 
-                        {row.idQuestion != idQuestion ? 
+                        {row.idQuestion !== idQuestion ? 
                         <TableRow key={row.idQuestion} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell sx={{
                                 borderTop:'1px solid rgba(224, 224, 224, 1)',
@@ -102,7 +93,7 @@ const PageReadyForPassTest = () => {
                             </TableCell>
                         </TableRow> :''}
                         
-                        {row.idAnswer != idAnswer ? 
+                        {row.idAnswer !== idAnswer ? 
                         <TableRow key={row.idAnswer} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell>
                                 {indexAanswer}
@@ -135,8 +126,8 @@ const PageReadyForPassTest = () => {
             <div style={{display:'grid', justifyContent:'center', fontSize:'1.3em', margin:'30px 0 30px 0'}}>
                 Sorry, the test is not ready yet.
             </div>}
-            {successMessage !='' ? <Alert severity="success">{successMessage}</Alert>:''}
-            {errorMessage !='' ? <Alert severity="error">{errorMessage}</Alert>:''}
+            {successMessage !=='' ? <Alert severity="success">{successMessage}</Alert>:''}
+            {errorMessage !=='' ? <Alert severity="error">{errorMessage}</Alert>:''}
         </div>
     )
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Routes, Route} from 'react-router-dom';
 import {notAuthRoutes, AuthRoutes } from "./routes";
 import { useSelector } from 'react-redux';

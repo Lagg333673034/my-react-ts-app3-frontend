@@ -10,5 +10,6 @@ export interface ITest{
     ready: number,
     published: number,
     uuid:string,
-    sort: number
+    sort: number,
+    questionCount: number,
 }

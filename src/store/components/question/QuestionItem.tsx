@@ -22,9 +22,10 @@ const QuestionItem: FC<QuestionItemProps> = ({question}) => {
   }
 
   return (
-    <div key={question.id} style={{display:'flex', flexDirection:'row', flexWrap:'nowrap', justifyContent:'space-between', alignItems:'center'}}>
-        <div style={{fontSize:'16px'}}>
-          {question.name}
+    <div key={question.id} style={{display:'flex', flexDirection:'row', flexFlow:'row', flexWrap:'wrap', 
+        justifyContent:'space-between', alignItems:'center'}}>
+        <div style={{fontSize:'16px',padding:'10px 10px'}}>
+          {question.name} (A:&nbsp;{question.answerCount}, True:&nbsp;{question.answerTrueCount})
         </div>
         <div>
           <IconButton size="medium" color='success' onClick={handlerSelect} title='Go to the answers list'>

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
-import { BrowserRouter, useNavigate } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Navbar from './store/components/navbar/Navbar';
 import AppRouter from './store/routes/AppRouter';
 import { siteSlice } from './store/reducers/siteSlice';

@@ -8,14 +8,13 @@ export const resultTestAPI = createApi({
     reducerPath: 'resultTestAPI',
     baseQuery: fetchBaseQuery({baseUrl: urlToAPIBackend_first}),
     endpoints: (build) => ({
-        fetchResultTest: build.query<any[], {idTest:number,id?:number}>({
-            query:({idTest,id}) => ({
+        fetchResultTest: build.query<any[], {idTest:number}>({
+            query:({idTest}) => ({
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
                 url: `${secondUrl}/get`,
                 method: 'POST',
                 body: {
                     idTest: idTest,
-                    id: id
                 }
             }),
         }),
@@ -23,6 +22,16 @@ export const resultTestAPI = createApi({
             query:({idResultTest}) => ({
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
                 url: `${secondUrl}/getAnswers`,
+                method: 'POST',
+                body: {
+                    idResultTest: idResultTest
+                }
+            }),
+        }),
+        fetchResultTestScore: build.query<any[], {idResultTest:number}>({
+            query:({idResultTest}) => ({
+                headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+                url: `${secondUrl}/getScore`,
                 method: 'POST',
                 body: {
                     idResultTest: idResultTest
