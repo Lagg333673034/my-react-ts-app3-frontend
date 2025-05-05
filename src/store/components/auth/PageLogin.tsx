@@ -1,5 +1,5 @@
 import './PageLogin.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authAPI } from '../../api/auth';
 import { IUser } from '../../type/user';
@@ -24,6 +24,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import {useGoogleLogin} from '@react-oauth/google';
 import ButtonGoogle from './buttonGoogle';
 import { Card, SignInContainer } from './MUI';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../reducers';
 
 const PageLogin = () => {
   const {idTest,uuid} = useParams();
@@ -101,6 +103,18 @@ const PageLogin = () => {
       signInUsingEmailPassword();
     }
   });
+
+  const {userAuth} = useSelector((state: RootState) => state.siteReducer);
+  useEffect(()=>{
+    if(!userAuth){
+      let firstLocation = window.location.pathname;
+      let firstLocationRegex = new RegExp('^(\/ready-for-pass\/)([0-9]){1,}(\/)([0-9a-z]){8}-([0-9a-z]){4}-([0-9a-z]){4}-([0-9a-z]){4}-([0-9a-z]){12}$');
+      let regexResult = firstLocationRegex.test(firstLocation)
+      if(regexResult){
+        localStorage.setItem('required-location',window.location.pathname);
+      }
+    }
+  },[userAuth])
 
   return(
       <SignInContainer direction="column" justifyContent="space-between">

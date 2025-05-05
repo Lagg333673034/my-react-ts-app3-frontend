@@ -7,9 +7,6 @@ import { useDispatch } from 'react-redux';
 import { userSetup } from './store/reducers/siteSlice';
 import Loader from './store/components/loader/loader';
 import { authAPI } from './store/api/auth';
-import { useSelector } from 'react-redux';
-import { RootState } from './store/reducers';
-
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,6 +28,7 @@ const App = () => {
       </div>
     )
   }
+
   return (
     <BrowserRouter>
         <Navbar/>

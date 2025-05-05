@@ -39,6 +39,12 @@ const PageRegistration = () => {
       }
     };
 
+    document.addEventListener('keyup', (event) => {
+      if(event.key == 'Enter'){
+        registrationButtonClick();
+      }
+    });
+
     return(
         <SignInContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">
