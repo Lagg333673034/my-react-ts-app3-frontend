@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch } from 'react-redux';
-import { testSlice } from '../../reducers/testSlice';
+import { modalTestDeleteSetup } from '../../reducers/testSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import { ITest } from '../../type/test';
@@ -18,7 +18,6 @@ interface IModalDelete {
 }
 export default function ModalDelete({ modalDeleteOpen, modalDeleteExecute }: IModalDelete) {
   const dispatch = useDispatch();
-  const {modalTestDeleteSetup} = testSlice.actions;
   const {modalTestDeleteObject} = useSelector((state: RootState) => state.testReducer);
 
   const modalDeleteClose = () =>{

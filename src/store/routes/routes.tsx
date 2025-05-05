@@ -3,11 +3,12 @@ import PageTests from '../pages/PageTests';
 import PageQuestions from '../pages/PageQuestions';
 import PageAnswers from '../pages/PageAnswers';
 /*import PageUsers from '../pages/PageUsers';*/
-import PageRegistration from '../pages/PageRegistration';
-import PageLogin from '../pages/PageLogin';
+import PageRegistration from '../components/auth/PageRegistration';
+import PageLogin from '../components/auth/PageLogin';
+import PageLogout from '../components/auth/PageLogout';
 import PageReadyForPassTest from '../pages/PageReadyForPassTest';
 import PageTestResults from '../pages/PageTestResults';
-import PageChangePassword from '../pages/PageChangePassword';
+import PageChangePassword from '../components/auth/PageChangePassword';
 
 export const PAGE_MAIN_ROUTE = '/';
 export const PAGE_TEST_ROUTE = '/test';
@@ -18,6 +19,7 @@ export const PAGE_TEST_RESULTS_ROUTE = '/test-results';
 //export const PAGE_USER_ROUTE = '/user';
 export const PAGE_REGISTRATION_ROUTE = '/registration';
 export const PAGE_LOGIN_ROUTE = '/login';
+export const PAGE_LOGOUT_ROUTE = '/logout';
 export const PAGE_CHANGE_PASSWORD_ROUTE = '/change-password';
 
 export const notAuthRoutes = [
@@ -36,5 +38,6 @@ export const AuthRoutes = [
     {path: PAGE_TEST_RESULTS_ROUTE+'/:idTest', component: <PageTestResults/>, exact: true},
     
     {/*path: PAGE_USER_ROUTE, component: <PageUsers/>, exact: true*/},
+    {path: PAGE_LOGOUT_ROUTE, component: <PageLogout/>, exact: true},
     {path: '*', component: <PageMain/>, exact: true},
 ];

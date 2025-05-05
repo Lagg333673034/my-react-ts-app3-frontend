@@ -2,6 +2,12 @@ body{
     margin: 10px 15px;
     padding: 0;
 }
+.waitServerWakeUp{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    font-size: 1.2rem;
+}
 /*-------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------*/
 div.MuiDialog-root.MuiModal-root >
@@ -153,3 +159,4 @@ table.testResultAnswers > tbody > tr > td.answerRow > span.MuiCheckbox-root{
 }
 /*-------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------*/
+

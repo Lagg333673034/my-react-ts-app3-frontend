@@ -5,7 +5,7 @@ import { PAGE_ANSWER_ROUTE, PAGE_QUESTION_ROUTE, PAGE_TEST_ROUTE } from '../../r
 import { useDispatch } from 'react-redux';
 import { IconButton } from '@mui/material';
 import { Delete, Edit, FormatListBulleted } from '@mui/icons-material';
-import { questionSlice } from '../../reducers/questionSlice';
+import { modalQuestionDeleteSetup, modalQuestionUpdateSetup } from '../../reducers/questionSlice';
 
 
 interface QuestionItemProps{
@@ -15,7 +15,6 @@ const QuestionItem: FC<QuestionItemProps> = ({question}) => {
   const {idTest} = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {modalQuestionUpdateSetup, modalQuestionDeleteSetup} = questionSlice.actions;
 
   const handlerSelect = async (e: React.MouseEvent) => {
     navigate(PAGE_TEST_ROUTE+`/${idTest}`+PAGE_QUESTION_ROUTE+`/${question.id}`+PAGE_ANSWER_ROUTE);

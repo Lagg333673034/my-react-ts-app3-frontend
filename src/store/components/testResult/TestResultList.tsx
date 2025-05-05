@@ -12,13 +12,12 @@ import { resultTestAPI } from '../../api/resultTest';
 import { useParams } from 'react-router-dom';
 import { MenuBook } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
-import { testResultSlice } from '../../reducers/testResultSlice';
+import { modalTestResultSetup } from '../../reducers/testResultSlice';
 
 const TestResultList: FC = () => {
     const dispatch = useDispatch();
     const {idTest} = useParams();
     const {data: testResults, isLoading, isError, refetch} = resultTestAPI.useFetchResultTestQuery({idTest:Number(idTest)});
-    const {modalTestResultSetup} = testResultSlice.actions;
 
     useEffect(()=>{
         refetch();

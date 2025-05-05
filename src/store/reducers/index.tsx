@@ -22,6 +22,7 @@ const rootReducer = combineReducers({
     testResultReducer,
     questionReducer,
     answerReducer,
+
     [authAPI.reducerPath]: authAPI.reducer,
     [userAPI.reducerPath]: userAPI.reducer,
     [testAPI.reducerPath]: testAPI.reducer,

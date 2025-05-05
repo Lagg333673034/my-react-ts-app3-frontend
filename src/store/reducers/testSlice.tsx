@@ -41,3 +41,5 @@ export const testSlice = createSlice({
 })
 
 export default testSlice.reducer;
+
+export const {modalTestAddSetup,modalTestUpdateSetup,modalTestDeleteSetup} = testSlice.actions;

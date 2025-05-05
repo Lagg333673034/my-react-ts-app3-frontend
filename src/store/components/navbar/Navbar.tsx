@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
     PAGE_MAIN_ROUTE, 
     PAGE_TEST_ROUTE, 
     /*PAGE_USER_ROUTE,*/
     PAGE_LOGIN_ROUTE, 
+    PAGE_LOGOUT_ROUTE, 
     PAGE_REGISTRATION_ROUTE, 
 } from '../../routes/routes';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
-import { useDispatch } from 'react-redux';
-import { siteSlice } from '../../reducers/siteSlice';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -23,15 +22,13 @@ import {Menu as MenuIcon, CloseRounded, Person} from '@mui/icons-material';
 import Menu from '@mui/material/Menu';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
-function Navbar() {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const {userLogout} = siteSlice.actions;
+
+const Navbar = () => {
+  const navigate = useNavigate();
+
     const {userAuth,userEmail} = useSelector((state: RootState) => state.siteReducer);
-    const logoutButton = () => {
-        dispatch(userLogout());
-        navigate(PAGE_LOGIN_ROUTE);
-    }
+            
+  
 
     const StyledToolbar = styled(Box)(() => ({
         display: 'flex',
@@ -50,6 +47,15 @@ function Navbar() {
     const [open, setOpen] = React.useState(false);
     const toggleDrawer = (newOpen: boolean) => () => {setOpen(newOpen);};
 
+
+
+
+
+    const logoutButton = () => {
+      navigate(PAGE_LOGOUT_ROUTE);
+    }
+
+
     return (
         <StyledToolbar>
           <Box sx={{flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
@@ -67,7 +73,7 @@ function Navbar() {
           </Box>
 
           <Box sx={{display: { xs: 'none', sm: 'flex' }, gap: 1, alignItems: 'center'}}>
-            {!userAuth?<Button color="primary" variant="text" size="small" onClick={() => navigate(`${PAGE_REGISTRATION_ROUTE}`)}>
+            {!userAuth?<Button color="primary" variant="contained" size="small" onClick={() => navigate(`${PAGE_REGISTRATION_ROUTE}`)}>
               Sign up
             </Button>:''}
             {!userAuth?<Button color="primary" variant="contained" size="small" onClick={() => navigate(`${PAGE_LOGIN_ROUTE}`)}>
@@ -121,12 +127,12 @@ function Navbar() {
                   </Button>
                 </MenuItem>:''}
                 {!userAuth?<MenuItem>
-                  <Button color="primary" variant="outlined" fullWidth onClick={() => {navigate(`${PAGE_LOGIN_ROUTE}`);setOpen(false)}}>
+                  <Button color="primary" variant="contained" fullWidth onClick={() => {navigate(`${PAGE_LOGIN_ROUTE}`);setOpen(false)}}>
                     Sign in
                     </Button>
                 </MenuItem>:''}
                 {userAuth?<MenuItem>
-                  <Button color="primary" variant="outlined" fullWidth onClick={() => { logoutButton();setOpen(false)}}>
+                  <Button color="primary" variant="contained" fullWidth onClick={() => { logoutButton();setOpen(false)}}>
                     Sign out
                   </Button>
                 </MenuItem>:''}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { authAPI } from '../api/auth';
+import { authAPI } from '../../api/auth';
 import { useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';

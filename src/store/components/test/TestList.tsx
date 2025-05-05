@@ -10,14 +10,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
-import { testSlice } from '../../reducers/testSlice';
+import { modalTestAddSetup } from '../../reducers/testSlice';
 import { useDispatch } from 'react-redux';
 import Loader from '../loader/loader';
 
 const TestList: FC = () => {
     const dispatch = useDispatch();
     const {data: tests, isLoading, isError, refetch} = testAPI.useFetchTestQuery(0);
-    const {modalTestAddSetup} = testSlice.actions;
 
     useEffect(()=>{
         refetch();

@@ -1,16 +1,15 @@
 import React, {FC} from 'react';
 import { IUser } from '../../type/user';
-import { userSlice } from '../../reducers/userSlice';
+import { modalUserDeleteSetup, modalUserUpdateSetup } from '../../reducers/userSlice';
 import { useDispatch } from 'react-redux';
 import { IconButton } from '@mui/material';
-import { Delete, Edit, FormatListBulleted } from '@mui/icons-material';
+import { Delete, Edit } from '@mui/icons-material';
 
 interface UserItemProps{
     user: IUser;
 }
 const UserItem: FC<UserItemProps> = ({user}) => {
   const dispatch = useDispatch();
-  const {modalUserUpdateSetup, modalUserDeleteSetup} = userSlice.actions;
 
   return (
     <div key={user.id} style={{display:'flex', flexDirection:'row', flexWrap:'nowrap', justifyContent:'space-between', alignItems:'center'}}>

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { questionAPI } from '../../api/question';
 import QuestionItem from './QuestionItem';
 import { IQuestion } from '../../type/question';
@@ -12,7 +12,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { questionSlice } from '../../reducers/questionSlice';
+import { modalQuestionAddSetup } from '../../reducers/questionSlice';
 
 
 interface QuestionListProps{
@@ -21,7 +21,6 @@ interface QuestionListProps{
 const QuestionList: FC<QuestionListProps> = ({idTest}) => {
     const dispatch = useDispatch();
     const {data: questions, isLoading, isError, refetch} = questionAPI.useFetchQuestionQuery({idTest:idTest, idQuestion:0});
-    const {modalQuestionAddSetup} = questionSlice.actions;
 
     useEffect(()=>{
         refetch();

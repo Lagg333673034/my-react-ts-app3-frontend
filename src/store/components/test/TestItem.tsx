@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import { ITest } from '../../type/test';
 import { PAGE_TEST_RESULTS_ROUTE, PAGE_QUESTION_ROUTE, PAGE_TEST_ROUTE } from '../../routes/routes';
 import { useNavigate } from 'react-router-dom';
-import { testSlice } from '../../reducers/testSlice';
+import { modalTestDeleteSetup, modalTestUpdateSetup } from '../../reducers/testSlice';
 import { useDispatch } from 'react-redux';
 import { IconButton, Popover, Typography } from '@mui/material';
 import { AssignmentTurnedIn, Delete, Edit, FlagSharp, FormatListNumbered, Link, Public, PublicOff } from '@mui/icons-material';
@@ -16,7 +16,7 @@ interface TestItemProps{
 const TestItem: FC<TestItemProps> = ({test}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {modalTestUpdateSetup, modalTestDeleteSetup} = testSlice.actions;
+
   const [setReadyTest] = testAPI.useSetReadyTestMutation();
   const [setPublishedTest] = testAPI.useSetPublishedTestMutation();
 
@@ -75,10 +75,13 @@ const TestItem: FC<TestItemProps> = ({test}) => {
             <IconButton size="medium" color='success' onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}
               onClick={()=>handlerCopyLinkForRegistred(`${urlToFrontend}/ready-for-pass/${test.id}/${test.uuid}`)}>
               <Link/>
-              <Popover
+              <Popover 
+                aria-hidden={false}
+                disableRestoreFocus
                 sx={{ pointerEvents: 'none' }} 
                 anchorEl={popoverAnchorEl}
-                open={popoverOpen} onClose={handlePopoverClose} 
+                open={popoverOpen} 
+                onClose={handlePopoverClose} 
                 anchorOrigin={{vertical: 'bottom',horizontal: 'left',}}
                 transformOrigin={{vertical: 'top',horizontal: 'left',}}
               >

@@ -18,16 +18,16 @@ npm install @mui/icons-material
 npm install --save material-ui-popup-state
 
 npm install uuid
-npm i dotenv
+npm install dotenv
 
-
-
-
-
-
-
-///
 npm install @react-oauth/google@latest
+npm install jwt-decode
+
+
+
+
+
+
 
 //to build
 npm run build

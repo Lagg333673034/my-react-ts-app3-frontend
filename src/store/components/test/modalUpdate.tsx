@@ -5,7 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch } from 'react-redux';
-import { testSlice } from '../../reducers/testSlice';
+import { modalTestUpdateSetup } from '../../reducers/testSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import { ITest } from '../../type/test';
@@ -18,7 +18,6 @@ interface IModalUpdate {
 }
 export default function ModalUpdate({ modalUpdateOpen, modalUpdateExecute }: IModalUpdate) {
   const dispatch = useDispatch();
-  const {modalTestUpdateSetup} = testSlice.actions;
   const {modalTestUpdateObject} = useSelector((state: RootState) => state.testReducer);
 
   const modalUpdateClose = () =>{

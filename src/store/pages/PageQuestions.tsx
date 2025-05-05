@@ -11,7 +11,7 @@ import { PAGE_TEST_ROUTE } from '../routes/routes';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { RootState } from '../reducers';
-import { questionSlice } from '../reducers/questionSlice';
+import { modalQuestionAddSetup, modalQuestionDeleteSetup, modalQuestionUpdateSetup, questionSlice } from '../reducers/questionSlice';
 import { questionAPI } from '../api/question';
 import { IQuestion } from '../type/question';
 import ModalAdd from '../components/question/modalAdd';
@@ -44,11 +44,6 @@ const PageQuestion = () => {
         modalQuestionUpdateOpen, modalQuestionUpdateObject,
         modalQuestionDeleteOpen, modalQuestionDeleteObject
     } = useSelector((state: RootState) => state.questionReducer);
-    const {
-        modalQuestionAddSetup,
-        modalQuestionUpdateSetup,
-        modalQuestionDeleteSetup
-    } = questionSlice.actions;
     const modalAddExecute = () => {
         const modalAddQuestionName = document.getElementById('modalAddQuestionName') as HTMLInputElement;
         createQuestion({idTest:Number(idTest), question: {name:modalAddQuestionName.value} as IQuestion});

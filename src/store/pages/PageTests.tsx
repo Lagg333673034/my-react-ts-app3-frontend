@@ -7,7 +7,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { RootState } from '../reducers';
-import { testSlice } from '../reducers/testSlice';
+import { modalTestAddSetup, modalTestDeleteSetup, modalTestUpdateSetup } from '../reducers/testSlice';
 import { ITest } from '../type/test';
 import ModalAdd from '../components/test/modalAdd';
 import ModalUpdate from '../components/test/modalUpdate';
@@ -30,11 +30,6 @@ const PageTest = () => {
         modalTestUpdateOpen, modalTestUpdateObject,
         modalTestDeleteOpen, modalTestDeleteObject
     } = useSelector((state: RootState) => state.testReducer);
-    const {
-        modalTestAddSetup,
-        modalTestUpdateSetup,
-        modalTestDeleteSetup
-    } = testSlice.actions;
     const modalAddExecute = () => {
         const modalAddTestName = document.getElementById('modalAddTestName') as HTMLInputElement;
         createTest({name: modalAddTestName.value} as ITest);

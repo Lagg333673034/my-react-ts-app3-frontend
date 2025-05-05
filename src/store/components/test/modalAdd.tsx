@@ -5,9 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch } from 'react-redux';
-import { testSlice } from '../../reducers/testSlice';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../reducers';
+import { modalTestAddSetup } from '../../reducers/testSlice';
 import { ITest } from '../../type/test';
 import { FormControl, TextField } from '@mui/material';
 
@@ -18,7 +16,6 @@ interface IModalAdd {
 }
 export default function ModalAdd({ modalAddOpen, modalAddExecute }: IModalAdd) {
   const dispatch = useDispatch();
-  const {modalTestAddSetup} = testSlice.actions;
 
   const modalAddClose = () =>{
     dispatch(modalTestAddSetup({open:false,object:{} as ITest}))

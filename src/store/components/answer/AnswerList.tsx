@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { answerAPI } from '../../api/answer';
 import AnswerItem from './AnswerItem';
 import { IAnswer } from '../../type/answer';
 import { useDispatch } from 'react-redux';
-import { answerSlice } from '../../reducers/answerSlice';
+import { modalAnswerAddSetup } from '../../reducers/answerSlice';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -20,7 +20,6 @@ interface AnswerListProps{
 const AnswerList: FC<AnswerListProps> = ({idQuestion}) => {
     const dispatch = useDispatch();
     const {data: answers, isLoading, isError, refetch} = answerAPI.useFetchAnswerQuery({idQuestion:idQuestion, idAnswer:0});
-    const {modalAnswerAddSetup} = answerSlice.actions;
 
     useEffect(()=>{
         refetch();

@@ -1,12 +1,12 @@
 import { IQuestion } from '../type/question';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { urlToAPIBackend_first } from './api';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQueryWithReauth } from './api';
 
 const secondUrl = '/question';
 
 export const questionAPI = createApi({
     reducerPath: 'questionAPI',
-    baseQuery: fetchBaseQuery({baseUrl: urlToAPIBackend_first}),
+    baseQuery: baseQueryWithReauth,
     tagTypes: ['Question'],
     endpoints: (build) => ({
         fetchQuestion: build.query<IQuestion[],{idTest:number,idQuestion:number}>({

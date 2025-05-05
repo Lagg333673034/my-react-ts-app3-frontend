@@ -15,7 +15,7 @@ import ModalDelete from '../components/answer/modalDelete';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { RootState } from '../reducers';
-import { answerSlice } from '../reducers/answerSlice';
+import { modalAnswerAddSetup, modalAnswerDeleteSetup, modalAnswerUpdateSetup } from '../reducers/answerSlice';
 import { answerAPI } from '../api/answer';
 import { IAnswer } from '../type/answer';
 
@@ -24,6 +24,7 @@ const PageAnswer = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {idTest,idQuestion} = useParams();
+    
     let {data: tests, refetch: refetchTest} = testAPI.useFetchTestQuery(Number(idTest));
     let {data: questions, refetch: refetchQuestion} = questionAPI.useFetchQuestionQuery({idTest:Number(idTest),idQuestion:Number(idQuestion)});
 
@@ -52,11 +53,6 @@ const PageAnswer = () => {
         modalAnswerUpdateOpen, modalAnswerUpdateObject,
         modalAnswerDeleteOpen, modalAnswerDeleteObject
     } = useSelector((state: RootState) => state.answerReducer);
-    const {
-        modalAnswerAddSetup,
-        modalAnswerUpdateSetup,
-        modalAnswerDeleteSetup
-    } = answerSlice.actions;
     const modalAddExecute = () => {
         const modalAddAnswerName = document.getElementById('modalAddAnswerName') as HTMLInputElement;
         createAnswer({idQuestion:Number(idQuestion), answer: {name:modalAddAnswerName.value} as IAnswer});

@@ -8,7 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
-import { questionSlice } from '../../reducers/questionSlice';
+import { modalQuestionDeleteSetup } from '../../reducers/questionSlice';
 import { IQuestion } from '../../type/question';
 
 
@@ -18,7 +18,6 @@ interface IModalDelete {
 }
 export default function ModalDelete({ modalDeleteOpen, modalDeleteExecute }: IModalDelete) {
   const dispatch = useDispatch();
-  const {modalQuestionDeleteSetup} = questionSlice.actions;
   const {modalQuestionDeleteObject} = useSelector((state: RootState) => state.questionReducer);
 
   const modalDeleteClose = () =>{

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { userAPI } from '../api/user';
 import { useSelector } from 'react-redux';
 import { RootState } from '../reducers';
-import { userSlice } from '../reducers/userSlice';
+import { modalUserDeleteSetup, modalUserUpdateSetup } from '../reducers/userSlice';
 import { IUser } from '../type/user';
 import ModalUpdate from '../components/user/modalUpdate';
 import ModalDelete from '../components/user/modalDelete';
@@ -25,10 +25,6 @@ const PageUser = () => {
         modalUserUpdateOpen, modalUserUpdateObject,
         modalUserDeleteOpen, modalUserDeleteObject
     } = useSelector((state: RootState) => state.userReducer);
-    const {        modalUserUpdateSetup,
-        modalUserDeleteSetup
-    } = userSlice.actions;
-
 
     const modalUpdateExecute = () => {
         const modalUpdateUserEmail = document.getElementById('modalUpdateUserEmail') as HTMLInputElement;

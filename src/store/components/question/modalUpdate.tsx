@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import { FormControl, TextField } from '@mui/material';
-import { questionSlice } from '../../reducers/questionSlice';
+import { modalQuestionUpdateSetup } from '../../reducers/questionSlice';
 import { IQuestion } from '../../type/question';
 
 
@@ -18,7 +18,6 @@ interface IModalUpdate {
 }
 export default function ModalUpdate({ modalUpdateOpen, modalUpdateExecute }: IModalUpdate) {
   const dispatch = useDispatch();
-  const {modalQuestionUpdateSetup} = questionSlice.actions;
   const {modalQuestionUpdateObject} = useSelector((state: RootState) => state.questionReducer);
 
   const modalUpdateClose = () =>{

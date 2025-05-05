@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
 import { FormControl, TextField } from '@mui/material';
 import { IUser } from '../../type/user';
-import { userSlice } from '../../reducers/userSlice';
+import { modalUserUpdateSetup } from '../../reducers/userSlice';
 
 
 interface IModalUpdate {
@@ -18,7 +18,6 @@ interface IModalUpdate {
 }
 export default function ModalUpdate({ modalUpdateOpen, modalUpdateExecute }: IModalUpdate) {
   const dispatch = useDispatch();
-  const {modalUserUpdateSetup} = userSlice.actions;
   const {modalUserUpdateObject} = useSelector((state: RootState) => state.userReducer);
 
   const modalUpdateClose = () =>{

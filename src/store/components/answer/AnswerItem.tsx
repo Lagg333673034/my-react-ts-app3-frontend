@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import { IAnswer } from '../../type/answer';
 import { useDispatch } from 'react-redux';
-import { answerSlice } from '../../reducers/answerSlice';
+import { modalAnswerDeleteSetup, modalAnswerUpdateSetup } from '../../reducers/answerSlice';
 import { IconButton } from '@mui/material';
-import { CheckCircleOutline, Delete, Edit, FormatListBulleted, RadioButtonUnchecked, RadioButtonUncheckedSharp } from '@mui/icons-material';
+import { CheckCircleOutline, Delete, Edit, RadioButtonUnchecked } from '@mui/icons-material';
 import { answerAPI } from '../../api/answer';
 import { useParams } from 'react-router-dom';
 
@@ -12,8 +12,7 @@ interface AnswerItemProps{
 }
 const AnswerItem: FC<AnswerItemProps> = ({answer}) => {
   const dispatch = useDispatch();
-  const {idTest,idQuestion} = useParams();
-  const {modalAnswerUpdateSetup, modalAnswerDeleteSetup} = answerSlice.actions;
+  const {idQuestion} = useParams();
   const [setCorrectAnswer] = answerAPI.useSetCorrectAnswerMutation();
 
   const handlerSetCorrect = (answerCorrect: number) => {

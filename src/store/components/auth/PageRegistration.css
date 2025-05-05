@@ -1,0 +1,25 @@
+.MuiTypography-root.titleName{
+  width: 100%;
+  font-size: clamp(1.4rem, 8vw, 1.5rem);
+  line-height: 1;
+}
+div.inputs{
+  width: 100%;
+}
+div.inputs > div > div > input{
+  padding: 10px;
+  margin: 0;
+}
+
+
+
+@media (min-width: 0px) and (max-width: 599px) {
+  body{
+      font-size: 18px;
+  }
+}
+@media (min-width: 600px) {
+  body{
+      font-size: 18px;
+  }
+}

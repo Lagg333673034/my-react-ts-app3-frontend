@@ -40,3 +40,5 @@ export const answerSlice = createSlice({
 })
 
 export default answerSlice.reducer;
+
+export const {modalAnswerAddSetup,modalAnswerUpdateSetup,modalAnswerDeleteSetup} = answerSlice.actions;

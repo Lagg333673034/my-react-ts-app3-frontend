@@ -9,29 +9,22 @@ export const userAPI = createApi({
     baseQuery: fetchBaseQuery({baseUrl: urlToAPIBackend_first}),
     tagTypes: ['User'],
     endpoints: (build) => ({
-        fetchUser: build.query<IUser[], number>({
-            query:(id:number) => ({
+        fetchUserOne: build.query<IUser, any>({
+            query:() => ({
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
-                url: `${secondUrl}/get`,
+                url: `${secondUrl}/getOne`,
                 method: 'POST',
-                body: {
-                    id: id
-                }
             }),
             providesTags: result => ['User']
         }),
-        /*createUser: build.mutation<IUser, IUser>({
-            query:(user) => ({
+        fetchUserAll: build.query<IUser[], any>({
+            query:() => ({
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
-                url: `${secondUrl}/create`,
+                url: `${secondUrl}/getAll`,
                 method: 'POST',
-                body: {
-                    email: user.email,
-                    password: user.password
-                }
             }),
-            invalidatesTags: ['User']
-        }),*/
+            providesTags: result => ['User']
+        }),
         updateUser: build.mutation<IUser, IUser>({
             query:(user) => ({
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},

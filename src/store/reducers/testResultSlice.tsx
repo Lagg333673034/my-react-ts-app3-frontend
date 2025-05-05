@@ -23,3 +23,5 @@ export const testResultSlice = createSlice({
 })
 
 export default testResultSlice.reducer;
+
+export const {modalTestResultSetup} = testResultSlice.actions;

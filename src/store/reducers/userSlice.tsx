@@ -32,3 +32,5 @@ export const userSlice = createSlice({
 })
 
 export default userSlice.reducer;
+
+export const {modalUserUpdateSetup,modalUserDeleteSetup} = userSlice.actions;

@@ -1,12 +1,11 @@
-import { ITest } from '../type/test';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { urlToAPIBackend_first } from './api';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQueryWithReauth } from './api';
 
 const secondUrl = '/resultTest';
 
 export const resultTestAPI = createApi({
     reducerPath: 'resultTestAPI',
-    baseQuery: fetchBaseQuery({baseUrl: urlToAPIBackend_first}),
+    baseQuery: baseQueryWithReauth,
     endpoints: (build) => ({
         fetchResultTest: build.query<any[], {idTest:number}>({
             query:({idTest}) => ({

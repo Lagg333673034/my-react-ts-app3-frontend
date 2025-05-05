@@ -3,29 +3,36 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import Navbar from './store/components/navbar/Navbar';
 import AppRouter from './store/routes/AppRouter';
-import { siteSlice } from './store/reducers/siteSlice';
 import { useDispatch } from 'react-redux';
-import { authAPI } from './store/api/auth';
+import { userSetup } from './store/reducers/siteSlice';
 import Loader from './store/components/loader/loader';
+import { authAPI } from './store/api/auth';
 
 
 const App = () => {
   const dispatch = useDispatch();
-  const {userSetup} = siteSlice.actions;
-  const {data: checkAuth, isLoading,isFetching} = authAPI.useCheckAuthQuery('',{pollingInterval: 30*60*1000});
-  
+
+  const {data:user, isFetching:isUserFetching, isLoading:isUserLoading} = authAPI.useRefreshQuery('')
+
   useEffect(()=>{
-    if(checkAuth && checkAuth.token && checkAuth.user && checkAuth.user.id && checkAuth.user.email){
+    if(user){
       dispatch(userSetup({
-          userEmail: checkAuth.user.email,
-          token: checkAuth.token
+          userEmail: user.user.email,
+          token: user.token
       }))
     }
-  },[checkAuth])
+  },[user])
 
-  if(isLoading || isFetching){
-    return <div><Loader/></div>
+  if(isUserLoading || isUserFetching){
+    return (
+      <div className='waitServerWakeUp'>
+        Please, wait for the server to wake up&nbsp;
+        <Loader/>
+      </div>
+    )
   }
+
+  //
 
   return (
     <BrowserRouter>

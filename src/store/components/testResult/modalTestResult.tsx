@@ -6,7 +6,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
-import { testResultSlice } from '../../reducers/testResultSlice';
+import { modalTestResultSetup } from '../../reducers/testResultSlice';
 import { ITestResult } from '../../type/testResult';
 import { Button, Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { resultTestAPI } from '../../api/resultTest';
@@ -16,7 +16,6 @@ interface IModalTestResult {
 }
 export default function ModalTestResult({ modalTestResultOpen }: IModalTestResult) {
   const dispatch = useDispatch();
-  const {modalTestResultSetup} = testResultSlice.actions;
   const {modalTestResultObject} = useSelector((state: RootState) => state.testResultReducer);
 
   const {currentData: testRows} = resultTestAPI.useFetchResultTestAnswersQuery({

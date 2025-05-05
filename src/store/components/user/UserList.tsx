@@ -13,7 +13,7 @@ import Loader from '../loader/loader';
 
 
 const UserList: FC = () => {
-    const {data: users, isError, isLoading, refetch} = userAPI.useFetchUserQuery(0 /*, {pollingInterval: 2000}*/);
+    const {data: users, isError, isLoading, refetch} = userAPI.useFetchUserAllQuery(0 /*, {pollingInterval: 2000}*/);
 
     useEffect(()=>{
         refetch();
