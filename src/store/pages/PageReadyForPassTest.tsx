@@ -41,7 +41,9 @@ const PageReadyForPassTest = () => {
             timeFinish:timeFinish,
             answers:answers
         }) as any;
-        
+
+        console.log("timeFinish")
+        console.log(timeFinish)
 
         setSuccessMessage('');
         setErrorMessage('');
