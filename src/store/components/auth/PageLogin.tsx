@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { authAPI } from '../../api/auth';
 import { IUser } from '../../type/user';
 import { userSetup } from '../../reducers/siteSlice';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { PAGE_MAIN_ROUTE, PAGE_REGISTRATION_ROUTE } from '../../routes/routes';
 
 import Box from '@mui/material/Box';
@@ -26,6 +26,7 @@ import ButtonGoogle from './buttonGoogle';
 import { Card, SignInContainer } from './MUI';
 
 const PageLogin = () => {
+  const {idTest,uuid} = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -93,6 +94,12 @@ const PageLogin = () => {
       }
     },
     onError: errorResponse => console.log(errorResponse),
+  });
+
+  document.addEventListener('keyup', (event) => {
+    if(event.key == 'Enter'){
+      signInUsingEmailPassword();
+    }
   });
 
   return(

@@ -7,7 +7,7 @@ const PageMain = () => {
     useEffect(()=>{
         navigate(PAGE_TEST_ROUTE);
     },[])
-    
+
     return(
         <div>
 
