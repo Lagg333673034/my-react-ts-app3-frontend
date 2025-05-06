@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
+import { systemAPI } from "../api/system";
 import { authAPI } from "../api/auth";
 import { userAPI } from "../api/user";
 import { testAPI } from "../api/test";
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
     questionReducer,
     answerReducer,
 
+    [systemAPI.reducerPath]: systemAPI.reducer,
     [authAPI.reducerPath]: authAPI.reducer,
     [userAPI.reducerPath]: userAPI.reducer,
     [testAPI.reducerPath]: testAPI.reducer,
@@ -35,6 +37,7 @@ export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+        .concat(systemAPI.middleware)
         .concat(authAPI.middleware)
         .concat(userAPI.middleware)
         .concat(testAPI.middleware)

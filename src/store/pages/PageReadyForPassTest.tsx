@@ -2,29 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { testAPI } from '../api/test';
 import { useParams } from 'react-router-dom';
 import { Alert, Button, Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
-import { getCurrentDataTime } from '../api/api';
 import { resultTestAPI } from '../api/resultTest';
+import { systemAPI } from '../api/system';
 
 const PageReadyForPassTest = () => {
     const {idTest,uuid} = useParams();
 
     const [successMessage,setSuccessMessage] = useState<string>('');
     const [errorMessage,setErrorMessage] = useState<string>('');
-    let timeStart = getCurrentDataTime();
-    let timeFinish = '';
+    const {currentData: testRows, error, isLoading} = testAPI.useFetchReadyForPassTestQuery({idTest:Number(idTest), uuid:String(uuid)}) as any;
+    const [getCurrentSystemTime] = systemAPI.useGetCurrentSystemTimeMutation();
+
     let indexQuestion = 1;
     let indexAanswer = 1;
     let idQuestion = '';
     let idAnswer = '';
 
-    const {currentData: testRows, error, isLoading} = testAPI.useFetchReadyForPassTestQuery({idTest:Number(idTest), uuid:String(uuid)});
     useEffect(()=>{
         if (error && "data" in error) {
             const errorForFetch = error as any;
             setErrorMessage(errorForFetch.data.message);
         }
     },[error])
-      
+
     const [saveResultTest] = resultTestAPI.useSaveResultTestMutation();
     const handlerSaveResultTest = async() =>{
         let answerResults = document.querySelectorAll('input[name=checkboxesValue]:checked') as any;
@@ -33,40 +33,40 @@ const PageReadyForPassTest = () => {
             answers.push(answerResults[i].value)
         }
 
-        timeFinish = getCurrentDataTime();
+        let timeFinish = await getCurrentSystemTime('') as any;
+        if(timeFinish.data && timeFinish.data.time){
 
-        let resultSaveTest = await saveResultTest({
-            idTest:Number(idTest),
-            timeStart:timeStart,
-            timeFinish:timeFinish,
-            answers:answers
-        }) as any;
+            let resultSaveTest = await saveResultTest({
+                idTest:Number(idTest),
+                timeStart:testRows.serverTime.time,
+                timeFinish:timeFinish.data.time,
+                answers:answers
+            }) as any;
+    
+            setSuccessMessage('');
+            setErrorMessage('');
 
-        console.log("timeFinish")
-        console.log(timeFinish)
-
-        setSuccessMessage('');
-        setErrorMessage('');
-        if(resultSaveTest.data){
-            setSuccessMessage(resultSaveTest.data.message);
-        }
-        if(resultSaveTest.error){
-            setErrorMessage(resultSaveTest.error.data.message);
+            if(resultSaveTest.data){
+                setSuccessMessage(resultSaveTest.data.message);
+            }
+            if(resultSaveTest.error){
+                setErrorMessage(resultSaveTest.error.data.message);
+            }
         }
     }
 
     return(
         <div style={{width:'100%'}}>
-            {!isLoading && testRows?.length && testRows?.length>0 ? 
+            {!isLoading && testRows && testRows.rows && testRows.rows.length && testRows.rows.length>0 ? 
             <div>
                 <div style={{display:'grid', fontSize: '1.2em', fontWeight: 'bold', margin:'0 0 10px 0'}}>
-                    Test: {testRows && testRows[0] && testRows[0].testName}
+                    Test: {testRows.rows[0] && testRows.rows[0].testName}
                 </div>
             
                 <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} size="small" className='readyToPassTest'>
                     <TableBody>
-                    {testRows && testRows.map((row:any) => 
+                    {testRows.rows.map((row:any) => 
                         <>
 
                         {row.idQuestion !== idQuestion ? 

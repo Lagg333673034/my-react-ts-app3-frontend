@@ -25,15 +25,6 @@ export const authAPI  =  createApi({
                 }
             }),
         }),
-        registrationUsingGoogle: build.mutation<IUser, IUser>({
-            query:(user) => ({
-                url: `${secondUrl}/registration-using-google`,
-                method: 'POST',
-                body: {
-                    email: user.email,
-                }
-            }),
-        }),
         loginUsingEmailPassword: build.mutation<any, IUser>({
             query:(user) => ({
                 url: `${secondUrl}/login-using-email-password`,
@@ -75,13 +66,6 @@ export const authAPI  =  createApi({
                 method: 'GET',
             }),
         }),
-
-
-
-
-
-
-
         loginUsingGoogle: build.mutation<any, string>({
             query:(email) => ({
                 url: `${secondUrl}/login-using-google`,

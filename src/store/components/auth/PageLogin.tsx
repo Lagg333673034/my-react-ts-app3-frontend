@@ -21,11 +21,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import {useGoogleLogin, GoogleLogin} from '@react-oauth/google';
-import ButtonGoogle from './buttonGoogle';
-import { Card, SignInContainer } from './MUI';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../reducers';
+import {GoogleLogin} from '@react-oauth/google';
+import {Card, SignInContainer} from './MUI';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../reducers';
 import {jwtDecode} from 'jwt-decode';
 
 const PageLogin = () => {
@@ -177,8 +176,6 @@ const PageLogin = () => {
               onSuccess={signInUsingGoogleOnSuccess}
               onError={signInUsingGoogleOnError}
             />
-            {/*<ButtonGoogle signInUsingGoogle={signInUsingGoogle}/>*/}
-
             <Typography sx={{ textAlign: 'center' }}>
               Don&apos;t have an account? &nbsp;
               <Link onClick={() => navigate(`${PAGE_REGISTRATION_ROUTE}`)} sx={{ alignSelf: 'center', fontSize: '1.1rem', cursor: 'pointer'}}>
