@@ -81,6 +81,10 @@ table.MuiTable-root.testResults > thead > tr > th:nth-child(2){
 table.MuiTable-root.testResults > thead > tr > th:nth-child(3){
     padding: 5px 10px;
 }
+table.MuiTable-root.testResults > thead > tr > th:nth-child(5){
+    padding: 5px 5px;
+    text-align: center;
+}
 table.testResults td{
     font-size: 0.9em;
     padding: 5px;
@@ -98,9 +102,14 @@ table.MuiTable-root.testResults > tbody > tr > td:nth-child(3){
     color: rgb(0, 0, 184);
 }
 table.MuiTable-root.testResults > tbody > tr > td:nth-child(4){
-    width: 200px;
+    width: 180px;
 }
 table.MuiTable-root.testResults > tbody > tr > td:nth-child(5){
+    width: 50px;
+    padding: 1px 1px;
+    text-align: center;
+}
+table.MuiTable-root.testResults > tbody > tr > td:nth-child(6){
     width: auto;
 }
 /*-------------------------------------------------------------------------------*/

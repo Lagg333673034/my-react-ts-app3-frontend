@@ -6,6 +6,7 @@ const secondUrl = '/resultTest';
 export const resultTestAPI = createApi({
     reducerPath: 'resultTestAPI',
     baseQuery: baseQueryWithReauth,
+    tagTypes: ['resultTest'],
     endpoints: (build) => ({
         fetchResultTest: build.query<any[], {idTest:number}>({
             query:({idTest}) => ({
@@ -16,6 +17,8 @@ export const resultTestAPI = createApi({
                     idTest: idTest,
                 }
             }),
+            providesTags: result => ['resultTest']
+
         }),
         fetchResultTestAnswers: build.query<any[], {idResultTest:number}>({
             query:({idResultTest}) => ({
@@ -50,7 +53,18 @@ export const resultTestAPI = createApi({
                 }
             }),
         }),
-
+        deleteResultTest: build.mutation<any, {idTest:number,id:number}>({
+            query:({idTest,id}) => ({
+                headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
+                url: `${secondUrl}/delete`,
+                method: 'POST',
+                body: {
+                    idTest: idTest,
+                    id: id
+                }
+            }),
+            invalidatesTags: ['resultTest']
+        }),
     })
 });
 

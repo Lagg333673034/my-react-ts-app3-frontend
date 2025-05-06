@@ -10,9 +10,13 @@ import { useDispatch } from 'react-redux';
 import Loader from '../loader/loader';
 import { resultTestAPI } from '../../api/resultTest';
 import { useParams } from 'react-router-dom';
-import { MenuBook } from '@mui/icons-material';
+import { Delete, MenuBook } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
-import { modalTestResultSetup } from '../../reducers/testResultSlice';
+import { modalTestResultSetup, modalTestResultDeleteSetup} from '../../reducers/testResultSlice';
+import ModalTestResultDelete from './modalTestResultDelete';
+import { RootState } from '../../reducers';
+import { useSelector } from 'react-redux';
+import { ITestResult } from '../../type/testResult';
 
 const TestResultList: FC = () => {
     const dispatch = useDispatch();
@@ -22,6 +26,14 @@ const TestResultList: FC = () => {
     useEffect(()=>{
         refetch();
     },[])
+
+    const [deleteResultTest] = resultTestAPI.useDeleteResultTestMutation();
+    const {modalTestResultDeleteOpen,modalTestResultDeleteObject} = useSelector((state: RootState) => state.testResultReducer);
+    const modalTestResultDeleteExecute = () => {
+        deleteResultTest({idTest:Number(idTest),id:Number(modalTestResultDeleteObject.id)});
+        dispatch(modalTestResultDeleteSetup({open:false,object:{} as ITestResult}))
+    };
+
     return(
         <div style={{width:'100%', textAlign:'center'}}>
 
@@ -36,6 +48,7 @@ const TestResultList: FC = () => {
                         <TableCell>Results</TableCell>
                         <TableCell>Email</TableCell>
                         <TableCell>Finish</TableCell>
+                        <TableCell>Del</TableCell>
                         <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
@@ -46,7 +59,8 @@ const TestResultList: FC = () => {
                             {index+=1}
                         </TableCell>
                         <TableCell>
-                            <IconButton size="small" color='primary' onClick={()=>dispatch(modalTestResultSetup({open:true,object:testResult}))} title='Results'>
+                            <IconButton size="small" color='primary' onClick={()=>
+                                dispatch(modalTestResultSetup({open:true,object:testResult}))} title='Results'>
                                 <MenuBook/>
                             </IconButton>
                         </TableCell>
@@ -56,12 +70,24 @@ const TestResultList: FC = () => {
                         <TableCell>
                             {testResult.timeFinish}
                         </TableCell>
+                        <TableCell>
+                            <IconButton size="small" color='error' onClick={()=>
+                                dispatch(modalTestResultDeleteSetup({open:true,object:testResult}))} title='Results'>
+                                <Delete/>
+                            </IconButton>
+                        </TableCell>
                         <TableCell></TableCell>
                     </TableRow>
                 ))}
                 </TableBody>
             </Table>
             </TableContainer>
+
+
+            <ModalTestResultDelete 
+            modalTestResultDeleteOpen={modalTestResultDeleteOpen} 
+            modalTestResultDeleteExecute={modalTestResultDeleteExecute} 
+            />
         </div>
     )
 }
