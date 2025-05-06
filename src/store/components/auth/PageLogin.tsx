@@ -21,11 +21,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import {useGoogleLogin} from '@react-oauth/google';
+import {useGoogleLogin, GoogleLogin} from '@react-oauth/google';
 import ButtonGoogle from './buttonGoogle';
 import { Card, SignInContainer } from './MUI';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
+import {jwtDecode} from 'jwt-decode';
 
 const PageLogin = () => {
   const {idTest,uuid} = useParams();
@@ -80,24 +81,6 @@ const PageLogin = () => {
     setModalForgotPasswordOpen(false);
   }
 
-  const signInUsingGoogle = useGoogleLogin({
-    onSuccess: async (codeResponse) => {
-      const result = await loginUsingGoogle(codeResponse.access_token) as any;
-      if(result.data){
-        setSuccessMessage(result.data.message);
-        dispatch(userSetup({
-          userEmail:result.data.user.email,
-          token:result.data.token
-        }));
-        navigate(PAGE_MAIN_ROUTE);
-      }
-      if(result.error){
-        setErrorMessage(result.error.data.message);
-      }
-    },
-    onError: errorResponse => console.log(errorResponse),
-  });
-
   document.addEventListener('keyup', (event) => {
     if(event.key == 'Enter'){
       signInUsingEmailPassword();
@@ -115,6 +98,33 @@ const PageLogin = () => {
       }
     }
   },[userAuth])
+
+  const signInUsingGoogleOnSuccess = async (credentialResponse:any) => {
+    //console.log(credentialResponse)
+    //console.log(jwtDecode(String(credentialResponse.credential)))
+    const userCredentialEncoded = credentialResponse?.credential;
+    const userCredentialDecoded = jwtDecode(userCredentialEncoded) as any;
+    const userEmail =  userCredentialDecoded?.email;
+
+    if(userEmail && userEmail.length > 0){
+      const result = await loginUsingGoogle(String(userEmail)) as any;
+
+      if(result?.data){
+        setSuccessMessage(result?.data?.message);
+        dispatch(userSetup({
+          userEmail:result.data.user.email,
+          token:result.data.token
+        }));
+        navigate(PAGE_MAIN_ROUTE);
+      }
+      if(result?.error){
+        setErrorMessage(result?.error?.data?.message);
+      }
+    }
+  }
+  const signInUsingGoogleOnError = () => {
+    setErrorMessage("Google login failed");
+  }
 
   return(
       <SignInContainer direction="column" justifyContent="space-between">
@@ -157,11 +167,18 @@ const PageLogin = () => {
               </DialogActions>
             </Dialog>
           </Box>
-          
           <Divider>or</Divider>
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems:'center',  gap: 2 }}>
+            <GoogleLogin 
+              theme='outline'
+              text='continue_with'
+              shape='rectangular'
+              logo_alignment='left'
+              onSuccess={signInUsingGoogleOnSuccess}
+              onError={signInUsingGoogleOnError}
+            />
+            {/*<ButtonGoogle signInUsingGoogle={signInUsingGoogle}/>*/}
 
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <ButtonGoogle signInUsingGoogle={signInUsingGoogle}/>
             <Typography sx={{ textAlign: 'center' }}>
               Don&apos;t have an account? &nbsp;
               <Link onClick={() => navigate(`${PAGE_REGISTRATION_ROUTE}`)} sx={{ alignSelf: 'center', fontSize: '1.1rem', cursor: 'pointer'}}>

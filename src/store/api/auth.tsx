@@ -83,11 +83,11 @@ export const authAPI  =  createApi({
 
 
         loginUsingGoogle: build.mutation<any, string>({
-            query:(google_access_token) => ({
+            query:(email) => ({
                 url: `${secondUrl}/login-using-google`,
                 method: 'POST',
                 body: {
-                    google_access_token: google_access_token,
+                    email: email,
                 }
             }),
         }),

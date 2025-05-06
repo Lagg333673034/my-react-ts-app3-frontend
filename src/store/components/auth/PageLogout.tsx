@@ -13,8 +13,9 @@ const PageLogout = () => {
   const {data: logout, isLoading, isFetching, isError} = authAPI.useLostLogoutQuery('');
 
   useEffect(()=>{
-      dispatch(userLogout());
-      navigate(PAGE_LOGIN_ROUTE);
+    localStorage.removeItem('required-location');
+    dispatch(userLogout());
+    navigate(PAGE_LOGIN_ROUTE);
   },[])
       
     return(
