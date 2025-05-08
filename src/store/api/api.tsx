@@ -4,10 +4,10 @@ import type {BaseQueryFn,FetchArgs,FetchBaseQueryError,} from '@reduxjs/toolkit/
 import { userLogout, userSetup } from '../reducers/siteSlice';
 
 
-//export const urlToAPIBackend_first = "http://localhost:5000/api";
-//export const urlToFrontend = "http://localhost:3000";
-export const urlToAPIBackend_first = "https://my-react-ts-app3-backend.onrender.com/api"
-export const urlToFrontend = "https://lagg333673034-my-test-app.netlify.app";
+export const urlToAPIBackend_first = "http://localhost:5000/api";
+export const urlToFrontend = "http://localhost:3000";
+//export const urlToAPIBackend_first = "https://my-react-ts-app3-backend.onrender.com/api"
+//export const urlToFrontend = "https://lagg333673034-my-test-app.netlify.app";
 
 const baseQuery = fetchBaseQuery({
     baseUrl: urlToAPIBackend_first,

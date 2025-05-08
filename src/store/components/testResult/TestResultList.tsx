@@ -11,12 +11,13 @@ import Loader from '../loader/loader';
 import { resultTestAPI } from '../../api/resultTest';
 import { useParams } from 'react-router-dom';
 import { Delete, MenuBook } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import { modalTestResultSetup, modalTestResultDeleteSetup} from '../../reducers/testResultSlice';
 import ModalTestResultDelete from './modalTestResultDelete';
 import { RootState } from '../../reducers';
 import { useSelector } from 'react-redux';
 import { ITestResult } from '../../type/testResult';
+import moment from 'moment';
 
 const TestResultList: FC = () => {
     const dispatch = useDispatch();
@@ -45,11 +46,9 @@ const TestResultList: FC = () => {
                 <TableHead>
                     <TableRow>
                         <TableCell>№</TableCell>
-                        <TableCell>Results</TableCell>
-                        <TableCell>Email</TableCell>
-                        <TableCell>Finish</TableCell>
+                        <TableCell>Res</TableCell>
+                        <TableCell>Email (finish time)</TableCell>
                         <TableCell>Del</TableCell>
-                        <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -59,24 +58,27 @@ const TestResultList: FC = () => {
                             {index+=1}
                         </TableCell>
                         <TableCell>
-                            <IconButton size="small" color='primary' onClick={()=>
-                                dispatch(modalTestResultSetup({open:true,object:testResult}))} title='Results'>
-                                <MenuBook/>
-                            </IconButton>
+                            <Tooltip title='Results'>
+                                <IconButton size="small" color='primary' onClick={()=>
+                                    dispatch(modalTestResultSetup({open:true,object:testResult}))}>
+                                    <MenuBook/>
+                                </IconButton>
+                            </Tooltip>
                         </TableCell>
                         <TableCell sx={{wordBreak: 'break-all'}}>
-                            {testResult.emailRegistred !='' ? testResult.emailRegistred : testResult.emailNotRegistred}
+                            <div style={{color: 'rgb(0, 0, 184)'}}>
+                                {testResult.emailRegistred !='' ? testResult.emailRegistred : testResult.emailNotRegistred}
+                            </div>
+                            ({moment(testResult.timeFinishUTC).format("MM.DD.YYYY - HH:mm:ss")})
                         </TableCell>
                         <TableCell>
-                            {testResult.timeFinish}
+                            <Tooltip title='Delete'>
+                                <IconButton size="small" color='error' onClick={()=>
+                                    dispatch(modalTestResultDeleteSetup({open:true,object:testResult}))}>
+                                    <Delete/>
+                                </IconButton>
+                            </Tooltip>
                         </TableCell>
-                        <TableCell>
-                            <IconButton size="small" color='error' onClick={()=>
-                                dispatch(modalTestResultDeleteSetup({open:true,object:testResult}))} title='Results'>
-                                <Delete/>
-                            </IconButton>
-                        </TableCell>
-                        <TableCell></TableCell>
                     </TableRow>
                 ))}
                 </TableBody>

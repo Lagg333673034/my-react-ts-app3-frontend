@@ -10,6 +10,7 @@ import { modalTestResultSetup } from '../../reducers/testResultSlice';
 import { ITestResult } from '../../type/testResult';
 import { Button, Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TableRow } from '@mui/material';
 import { resultTestAPI } from '../../api/resultTest';
+import moment from 'moment';
 
 interface IModalTestResult {
   modalTestResultOpen: boolean;
@@ -65,7 +66,8 @@ export default function ModalTestResult({ modalTestResultOpen }: IModalTestResul
         <div>
         Finish time:&nbsp;
           <div style={{display:'inline-block',color:'#bb009d'}}>
-             {modalTestResultObject.timeFinish}&nbsp;
+             {moment(modalTestResultObject.timeFinishUTC).format("MM.DD.YYYY - HH:mm:ss")}
+             &nbsp;
             ({diff_minutes(modalTestResultObject.timeFinish0,modalTestResultObject.timeStart0)} min.)
           </div>
         </div>

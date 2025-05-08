@@ -61,6 +61,8 @@ const PageReadyForPassTest = () => {
             <div>
                 <div style={{display:'grid', fontSize: '1.2em', fontWeight: 'bold', margin:'0 0 10px 0'}}>
                     Test: {testRows.rows[0] && testRows.rows[0].testName}
+                    {successMessage !=='' ? <Alert severity="success">{successMessage}</Alert>:''}
+                    {errorMessage !=='' ? <Alert severity="error">{errorMessage}</Alert>:''}
                 </div>
             
                 <TableContainer component={Paper}>

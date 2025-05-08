@@ -22,7 +22,7 @@ const PageTestResults = () => {
         <Link style={{cursor:'pointer'}} underline="hover" key="1" color="inherit" onClick={()=>navigate(PAGE_TEST_ROUTE)}>
             Tests
         </Link>,
-        <Typography key="2" sx={{ color: 'text.primary' }}>Test rersults</Typography>,
+        <Typography key="2" sx={{ color: 'text.primary' }}>Test results</Typography>,
     ];
 
     const {modalTestResultOpen} = useSelector((state: RootState) => state.testResultReducer);

@@ -67,22 +67,14 @@ table.testResults{
     min-width: 100px;
 }
 table.testResults th{
-    padding: 5px 5px;
+    padding: 10px 10px;
     line-height: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 500;
     text-align: left;
 }
-table.MuiTable-root.testResults > thead > tr > th:nth-child(1){
-    padding: 5px 10px;
-}
-table.MuiTable-root.testResults > thead > tr > th:nth-child(2){
-    padding: 0;
-}
-table.MuiTable-root.testResults > thead > tr > th:nth-child(3){
-    padding: 5px 10px;
-}
-table.MuiTable-root.testResults > thead > tr > th:nth-child(5){
-    padding: 5px 5px;
+table.MuiTable-root.testResults > thead > tr > th:nth-child(2),
+table.MuiTable-root.testResults > thead > tr > th:nth-child(4){
     text-align: center;
 }
 table.testResults td{
@@ -95,22 +87,16 @@ table.MuiTable-root.testResults > tbody > tr > td:nth-child(1){
 }
 table.MuiTable-root.testResults > tbody > tr > td:nth-child(2){
     width: 2em;
+    text-align: center;
 }
 table.MuiTable-root.testResults > tbody > tr > td:nth-child(3){
-    width: 250px;
+    width: 100%;
     padding: 5px 10px;
-    color: rgb(0, 0, 184);
 }
 table.MuiTable-root.testResults > tbody > tr > td:nth-child(4){
-    width: 180px;
-}
-table.MuiTable-root.testResults > tbody > tr > td:nth-child(5){
     width: 50px;
     padding: 1px 1px;
     text-align: center;
-}
-table.MuiTable-root.testResults > tbody > tr > td:nth-child(6){
-    width: auto;
 }
 /*-------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------*/
@@ -153,6 +139,7 @@ table.testResultAnswers > tbody> tr > td:nth-child(2){
 table.testResultAnswers > tbody> tr > td:nth-child(3),
 table.testResultAnswers > tbody> tr > td:nth-child(4){
     text-align: center;
+    word-break: normal;
 }
 table .correctAnswerRow{ 
     background-color: rgb(178, 235, 178);
@@ -168,3 +155,42 @@ table.testResultAnswers > tbody > tr > td.answerRow > span.MuiCheckbox-root{
 }
 /*-------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------*/
+@media (min-width: 1px) and (max-width: 599px){
+    table.testResults th {
+        padding: 3px;
+        font-size: 1rem;
+    }
+    table.testResults td {
+        word-break: break-word;
+    }
+
+    table.MuiTable-root.testResults > thead > tr > th:nth-child(2){
+        padding: 0;
+    }
+    table.MuiTable-root.testResults > thead > tr > th:nth-child(3){
+        text-align: center;
+    }
+    table.MuiTable-root.testResults > tbody > tr > td:nth-child(3) {
+        padding: 3px;
+    }
+    table.testResultAnswers > tbody> tr > td{
+        padding: 3px !important;
+        line-height: 1 !important;
+    }
+
+    div.modalTestResult.MuiDialog-root.MuiModal-root > div.MuiDialog-container > 
+    div.MuiPaper-root > div.MuiDialogContent-root {
+        width: calc(100% - 20px);
+        padding: 10px 10px 10px 10px;
+        gap: 2px;
+        font-size: 16px;
+    }
+    div.modalTestResult.MuiDialog-root.MuiModal-root > div.MuiDialog-container > 
+    div.MuiPaper-root > div.MuiDialogContent-root > div {
+        word-break: break-word;
+    }
+
+}
+@media (min-width: 600px) {
+
+}

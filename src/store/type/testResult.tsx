@@ -12,8 +12,10 @@ export interface ITestResult{
     emailNotRegistred: string,
     timeStart:string,
     timeStart0:string,
+    timeStartUTC:string,
     timeFinish:string,
     timeFinish0:string,
+    timeFinishUTC:string,
     sort: number,
     questionCount:number,
 }

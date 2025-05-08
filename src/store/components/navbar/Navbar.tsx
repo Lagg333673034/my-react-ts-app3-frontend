@@ -24,6 +24,7 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import {modalSiteInfoSetup} from '../../reducers/siteSlice';
 import ModalSiteInfo from './modalSiteInfo';
 import { useDispatch } from 'react-redux';
+import { Tooltip } from '@mui/material';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -76,9 +77,13 @@ const Navbar = () => {
           {!userAuth?<Button color="primary" variant="contained" size="small" onClick={() => navigate(`${PAGE_LOGIN_ROUTE}`)}>
             Sign in
           </Button>:''}
-          <IconButton aria-label="Menu button" onClick={()=>dispatch(modalSiteInfoSetup({open:true}))} sx={{padding:'5px'}}>
-            <HelpCenterSharp sx={{color: '#0035ff',width:'1.2em',height:'1.2em'}} />
-          </IconButton>
+
+          <Tooltip title='Information about this program'>
+            <IconButton onClick={()=>dispatch(modalSiteInfoSetup({open:true}))} sx={{padding:'5px'}}>
+              <HelpCenterSharp sx={{color: '#0035ff',width:'1.2em',height:'1.2em'}} />
+            </IconButton>
+          </Tooltip>
+
           {userAuth? <PopupState variant="popover">
               {(popupState) => (
                 <React.Fragment>

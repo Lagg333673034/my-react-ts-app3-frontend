@@ -3,7 +3,7 @@ import { IQuestion } from '../../type/question';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PAGE_ANSWER_ROUTE, PAGE_QUESTION_ROUTE, PAGE_TEST_ROUTE } from '../../routes/routes';
 import { useDispatch } from 'react-redux';
-import { IconButton } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import { Delete, Edit, FormatListBulleted } from '@mui/icons-material';
 import { modalQuestionDeleteSetup, modalQuestionUpdateSetup } from '../../reducers/questionSlice';
 
@@ -27,15 +27,21 @@ const QuestionItem: FC<QuestionItemProps> = ({question}) => {
           {question.name} (A:&nbsp;{question.answerCount}, True:&nbsp;{question.answerTrueCount})
         </div>
         <div>
-          <IconButton size="medium" color='success' onClick={handlerSelect} title='Go to the answers list'>
-            <FormatListBulleted/>
-          </IconButton>
-          <IconButton size="medium" color='warning' onClick={()=>dispatch(modalQuestionUpdateSetup({open:true,object:question}))} title='Edit question'>
-            <Edit/>
-          </IconButton>
-          <IconButton size="medium" color='error' onClick={()=>dispatch(modalQuestionDeleteSetup({open:true,object:question}))} title='Delete question'>
-            <Delete/>
-          </IconButton>
+          <Tooltip title='Go to the answers list'>
+            <IconButton size="medium" color='success' onClick={handlerSelect}>
+              <FormatListBulleted/>
+            </IconButton>
+          </Tooltip>
+          <Tooltip title='Edit question'>
+            <IconButton size="medium" color='warning' onClick={()=>dispatch(modalQuestionUpdateSetup({open:true,object:question}))}>
+              <Edit/>
+            </IconButton>
+          </Tooltip>
+          <Tooltip title='Delete question'>
+            <IconButton size="medium" color='error' onClick={()=>dispatch(modalQuestionDeleteSetup({open:true,object:question}))}>
+              <Delete/>
+            </IconButton>
+          </Tooltip>
         </div>
     </div>
   );
