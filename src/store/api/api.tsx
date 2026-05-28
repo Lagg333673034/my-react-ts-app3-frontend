@@ -36,4 +36,3 @@ export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs,unknown,FetchBa
   }
   return result
 }
-

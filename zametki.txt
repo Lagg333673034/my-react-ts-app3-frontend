@@ -7,10 +7,12 @@ npm install @reduxjs/toolkit react-redux @types/react-redux
 (dly navigacii)
 npm i react-router-dom @types/react-router-dom
 
+
 (ystanovka tipo servera -- eto prosto fail "db.json")
 npm install json-server
 zapysk etogo servera komandoy "npx json-server db.json --port 5000"  
 (--port 5000, t.k. na 3000 porty y nas rabotaer React.js)
+
 
 (biblioteki dla stilizacii)
 npm install @mui/material @emotion/react @emotion/styled
